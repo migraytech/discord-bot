@@ -1,4 +1,12 @@
 import Service.MessageBuilderService;
+import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
+import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
+import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
+import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager;
+import com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeAudioSourceManager;
+import com.sedmelluq.discord.lavaplayer.tools.FriendlyException;
+import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist;
+import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import interfaces.IBot;
 import listener.SaitamaAudioListener;
 import listener.SaitamaCommandListener;
@@ -7,7 +15,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
+import org.javacord.api.audio.AudioSource;
 import org.javacord.api.entity.channel.ServerTextChannel;
+import org.javacord.api.entity.channel.ServerVoiceChannel;
 import org.javacord.api.entity.channel.TextChannel;
 import org.javacord.api.entity.message.MessageBuilder;
 import org.javacord.api.entity.message.MessageDecoration;
@@ -27,15 +37,16 @@ import java.util.concurrent.TimeUnit;
  */
 
 public class SaitamaBot implements IBot, MessageCreateListener {
+
     /**
      * Message Listener
      *
      * @param event
      */
     private final String version = "1.0";
-    @jdk.nashorn.internal.runtime.logging.Logger
     private static final Logger logger = LogManager.getLogger(SaitamaBot.class);
     private final double id = 0.1;
+
 
 
     private MessageBuilderService messageBuilderService;
@@ -52,10 +63,11 @@ public class SaitamaBot implements IBot, MessageCreateListener {
 
 
     private static  TextChannel channel= null;
+    private static ServerVoiceChannel serverVoiceChannel = null;
     private static ServerTextChannel serverTextChannel = null;
 
     private static DiscordApi discordApi;
-    private final String token = "OTAxMDEwMjAzMDYxOTQwMjM1.YXJpJA.58vkWyJ_5pSSSQIuygABvFJf80g";
+    private final String token = "OTAxMDEwMjAzMDYxOTQwMjM1.YXJpJA.8pN3VpzvB4CC85ZfqPbKxO6Y_68";
 
     public SaitamaBot() {
     }
@@ -69,6 +81,12 @@ public class SaitamaBot implements IBot, MessageCreateListener {
      @Override
     public void setup() {
          logger.info("Create Saitamabot:  "+id+"  "+version);
+
+
+         AudioPlayerManager playerManager = new DefaultAudioPlayerManager();
+         playerManager.registerSourceManager(new YoutubeAudioSourceManager());
+         AudioPlayer player = playerManager.createPlayer();
+
          discordApi = new DiscordApiBuilder()
                 .setToken(token)
                 .addServerBecomesAvailableListener(event -> {
@@ -93,6 +111,50 @@ public class SaitamaBot implements IBot, MessageCreateListener {
              channel.ifPresent(textChannel -> textChannel.sendMessage("Welcome to the server, " + event.getUser().getMentionTag() + "!"));
          });
 
+
+         //Create an audio source and add it to the audio connection's queue
+         AudioSource source = new LavaplayerAudioSource(discordApi, player);
+         serverVoiceChannel = discordApi.getServerVoiceChannelById(835207222753493042L).get();
+         serverVoiceChannel.connect().thenAccept(audioConnection -> {
+             audioConnection.setAudioSource(source);
+
+             // You can now use the AudioPlayer like you would normally do with Lavaplayer, e.g.,
+             playerManager.loadItem("https://www.youtube.com/watch?v=PY8f1Z3nARo", new AudioLoadResultHandler() {
+                 @Override
+                 public void trackLoaded(AudioTrack track) {
+                     player.playTrack(track);
+                 }
+
+                 @Override
+                 public void playlistLoaded(AudioPlaylist playlist) {
+                     for (AudioTrack track : playlist.getTracks()) {
+                         logger.info("PLAY");
+                         player.playTrack(track);
+                     }
+                 }
+
+                 @Override
+                 public void noMatches() {
+                     // Notify the user that we've got nothing
+                     logger.info("PLAY");
+
+                 }
+
+                 @Override
+                 public void loadFailed(FriendlyException e) {
+                     logger.info("PLAY");
+
+                 }
+             });
+
+
+         }).exceptionally(e -> {
+             // Failed to connect to voice channel (no permissions?)
+
+             e.printStackTrace();
+             return null;
+         });
+
          discordApi.setMessageCacheSize(10, 60);
          System.out.println("Setup the bot...");
          logger.info("Setup the bot... ");
@@ -104,8 +166,9 @@ public class SaitamaBot implements IBot, MessageCreateListener {
      */
     @Override
     public void start() {
-        //System.out.println("You can invite the bot by using the following url:" + discordApi.createBotInvite());
+        System.out.println("You can invite the bot by using the following url:" + discordApi.createBotInvite());
         logger.info( "Start the SaitamaBot... ");
+        System.out.println("Start the SaitamaBot..");
 
     }
 
@@ -127,12 +190,9 @@ public class SaitamaBot implements IBot, MessageCreateListener {
      *
      * @param
      */
-
     @Override
     public void onMessageReceived() {
         discordApi.addMessageCreateListener(reactionAddEvent -> {
-
-
             if(reactionAddEvent.getMessageContent().equals("Hi SaitamaBot"))
                 reactionAddEvent.getChannel().sendMessage("Hi! :smiley:"+reactionAddEvent.getMessage().getUserAuthor().get().getName());
 
@@ -207,6 +267,9 @@ public class SaitamaBot implements IBot, MessageCreateListener {
         }
 
     }
+
+
+
     /**
      * Message Listener
      *

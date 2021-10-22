@@ -1,10 +1,14 @@
+import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
+import com.sedmelluq.discord.lavaplayer.tools.FriendlyException;
+import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist;
+import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import com.sedmelluq.discord.lavaplayer.track.playback.AudioFrame;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.audio.AudioSource;
 import org.javacord.api.audio.AudioSourceBase;
 
-class LavaplayerAudioSource extends AudioSourceBase {
+public class LavaplayerAudioSource extends AudioSourceBase {
 
     private final AudioPlayer audioPlayer;
     private AudioFrame lastFrame;
@@ -18,6 +22,12 @@ class LavaplayerAudioSource extends AudioSourceBase {
     public LavaplayerAudioSource(DiscordApi api, AudioPlayer audioPlayer) {
         super(api);
         this.audioPlayer = audioPlayer;
+    }
+
+
+    @Override
+    public void mute() {
+        super.mute();
     }
 
     @Override
