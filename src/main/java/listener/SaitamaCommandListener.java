@@ -36,7 +36,7 @@ public class SaitamaCommandListener implements ICommandListener {
     /**
      * Message Listener
      *
-     * @param event
+     * @param messageCreateEvent
      */
     @Override
     public void onMessageCreate(MessageCreateEvent messageCreateEvent) {
