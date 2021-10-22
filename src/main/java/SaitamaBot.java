@@ -29,6 +29,8 @@ public class SaitamaBot implements IBot, MessageCreateListener {
     //commands
     //music
     //monitoring
+
+
     private static  TextChannel channel= null;
     private static ServerTextChannel serverTextChannel = null;
 
@@ -48,10 +50,11 @@ public class SaitamaBot implements IBot, MessageCreateListener {
                     System.out.println("Loaded " + event.getServer().getName());
                 })
                 .addListener(new SaitamaBot())
-                .setWaitForServersOnStartup(true)
+                .setWaitForServersOnStartup(false)
                 .login()
                 .join();
 
+         discordApi.setMessageCacheSize(10, 60);
          System.out.println("Setup the bot...");
          logger.info("Setup the bot... ");
     }
@@ -73,33 +76,39 @@ public class SaitamaBot implements IBot, MessageCreateListener {
     @Override
     public void onMessageReceived() {
         discordApi.addMessageCreateListener(reactionAddEvent -> {
-            channel = reactionAddEvent.getChannel();
+
+
+            if(reactionAddEvent.getMessageContent().equals("Hi SaitamaBot"))
+                reactionAddEvent.getChannel().sendMessage("Hi! :smiley:");
 
             if(reactionAddEvent.getMessageContent().equals("!commands") || reactionAddEvent.getMessageContent().equals("!help")) {
 
                 reactionAddEvent.getChannel().sendMessage("HI! " + reactionAddEvent.getMessage().getUserAuthor().get().getName());
                 reactionAddEvent.getChannel().sendMessage("Here are some commands that I understand:");
 
-                channel.sendMessage(String.valueOf(new MessageBuilder()
+                reactionAddEvent.getChannel().sendMessage(String.valueOf(new MessageBuilder()
                                 .append("!clean ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Remove all messages from the Text Channel").send(channel)));
 
-                channel.sendMessage(String.valueOf(new MessageBuilder()
-                                .append("!one-punch ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("One punch a User form the server for Softban a member").send(channel)));
+                reactionAddEvent.getChannel().sendMessage(String.valueOf(new MessageBuilder()
+                        .append("!disconnect ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Stop the SaitamaBot").send(channel)));
 
                 reactionAddEvent.getChannel().sendMessage(String.valueOf(new MessageBuilder()
-                                .append("!ban ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Ban a member for a limited amount of time, by entering the limit in the command.").send(channel)));
+                                .append("!one-punch  <@user>",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("One punch a User form the server for Softban a member").send(channel)));
 
                 reactionAddEvent.getChannel().sendMessage(String.valueOf(new MessageBuilder()
-                                .append("!kick ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Kick a member in the channel").send(channel)));
+                                .append("!ban <@user>",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Ban a member for a limited amount of time, by entering the limit in the command.").send(channel)));
 
                 reactionAddEvent.getChannel().sendMessage(String.valueOf(new MessageBuilder()
-                                .append("!mute ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Mute a member so they cannot type or speak for a limited time").send(channel)));
+                                .append("!kick <@user> ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Kick a member in the channel").send(channel)));
 
                 reactionAddEvent.getChannel().sendMessage(String.valueOf(new MessageBuilder()
-                                .append("!watch-anime ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Watch anime video from kissanime.ru select the anime-name ").send(channel)));
+                                .append("!mute <@user> ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Mute a member so they cannot type or speak for a limited time").send(channel)));
 
                 reactionAddEvent.getChannel().sendMessage(String.valueOf(new MessageBuilder()
-                        .append("!spam ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Choose your victim to get spammed").send(channel)));
+                                .append("!watch-anime <@name> ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Watch anime video from kissanime.ru select the anime-name ").send(channel)));
+
+                reactionAddEvent.getChannel().sendMessage(String.valueOf(new MessageBuilder()
+                        .append("!spam <@user> ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Choose your victim to get spammed").send(channel)));
             }
         }).removeAfter(50,TimeUnit.MINUTES);
     }
