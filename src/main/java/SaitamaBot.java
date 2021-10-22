@@ -20,9 +20,18 @@ import java.io.File;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Message Listener
+ *
+ * @param event
+ */
 
 public class SaitamaBot implements IBot, MessageCreateListener {
-
+    /**
+     * Message Listener
+     *
+     * @param event
+     */
     private final String version = "1.0";
     @jdk.nashorn.internal.runtime.logging.Logger
     private static final Logger logger = LogManager.getLogger(SaitamaBot.class);
@@ -51,9 +60,15 @@ public class SaitamaBot implements IBot, MessageCreateListener {
     public SaitamaBot() {
     }
 
+    /**
+     * Message Listener
+     *
+     * @param event
+     */
+
      @Override
     public void setup() {
-         logger.trace("Create Saitamabot:  "+id+"  "+version);
+         logger.info("Create Saitamabot:  "+id+"  "+version);
          discordApi = new DiscordApiBuilder()
                 .setToken(token)
                 .addServerBecomesAvailableListener(event -> {
@@ -82,20 +97,36 @@ public class SaitamaBot implements IBot, MessageCreateListener {
          System.out.println("Setup the bot...");
          logger.info("Setup the bot... ");
     }
-
+    /**
+     * Message Listener
+     *
+     * @param event
+     */
     @Override
     public void start() {
-        System.out.println("You can invite the bot by using the following url:" + discordApi.createBotInvite());
+        //System.out.println("You can invite the bot by using the following url:" + discordApi.createBotInvite());
         logger.info( "Start the SaitamaBot... ");
 
     }
 
+    /**
+     * Message Listener
+     *
+     * @param event
+     */
     @Override
     public void disconnect() {
         logger.info("Disconnect the SaitamaBot... ");
         discordApi.disconnect();
         System.exit(3);
     }
+
+
+    /**
+     * Message Listener
+     *
+     * @param event
+     */
 
     @Override
     public void onMessageReceived() {
@@ -137,6 +168,11 @@ public class SaitamaBot implements IBot, MessageCreateListener {
         });
     }
 
+    /**
+     * Message Listener
+     *
+     * @param event
+     */
     @Override
     public void onMessageCreate(MessageCreateEvent messageCreateEvent) {
         serverTextChannel = messageCreateEvent.getServerTextChannel().get();
@@ -171,7 +207,11 @@ public class SaitamaBot implements IBot, MessageCreateListener {
         }
 
     }
-
+    /**
+     * Message Listener
+     *
+     * @param event
+     */
     @Override
     public void removeMessage() {
         discordApi.addReactionAddListener(event -> {
