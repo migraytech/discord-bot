@@ -3,7 +3,7 @@ import org.javacord.api.util.event.ListenerManager;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
-public class SaitamaBotCommandsManager implements ListenerManager {
+public class SaitamaCommandListener implements ListenerManager {
 
     @Override
     public boolean isGlobalListener() {
