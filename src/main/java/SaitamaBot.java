@@ -1,36 +1,38 @@
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
-import org.javacord.api.entity.channel.Channel;
 import org.javacord.api.entity.channel.TextChannel;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
 
+import javax.security.auth.login.Configuration;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+
+import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
 
 
 public class SaitamaBot implements IBot, MessageCreateListener {
 
     private final String version = "1.0";
-
-    private final Logger logger = Logger.getLogger(this.getClass().getName());
+    private static final Logger logger = LogManager.getLogger(SaitamaBot.class);
     private final double id = 0.1;
-
-
     private static  TextChannel channel= null;
+
 
 
     //INFO//
     private DiscordApi discordApi;
-    private final String token = "OTAxMDEwMjAzMDYxOTQwMjM1.YXJpJA.I7irfJAPY1Mdwuvq_G6aWCZEgJk";
+    private final String token = System.getenv("DISCORD_TOKEN");
 
     public SaitamaBot() {
     }
 
      @Override
     public void setup() {
-         logger.config("Create Saitamabot:  "+id+"  "+version);
+         logger.trace("Create Saitamabot:  "+id+"  "+version);
+         System.out.println(token);
          discordApi = new DiscordApiBuilder()
                 .setToken(token)
                 .addServerBecomesAvailableListener(event -> {
@@ -41,20 +43,20 @@ public class SaitamaBot implements IBot, MessageCreateListener {
                 .login()
                 .join();
 
-        System.out.println("Setup the bot...");
-        logger.log(Level.FINE,"Setup the bot... ");
+         System.out.println("Setup the bot...");
+       logger.info("Setup the bot... ");
     }
 
     @Override
     public void start() {
-        //System.out.println("You can invite the bot by using the following url:" + discordApi.createBotInvite());
-        logger.log(Level.CONFIG,"Start the SaitamaBot... ");
+        System.out.println("You can invite the bot by using the following url:" + discordApi.createBotInvite());
+       logger.trace( "Start the SaitamaBot... ");
 
     }
 
     @Override
     public void disconnect() {
-        logger.log(Level.CONFIG,"Disconnect the SaitamaBot... ");
+        logger.info("Disconnect the SaitamaBot... ");
         discordApi.disconnect();
 
     }
@@ -66,7 +68,10 @@ public class SaitamaBot implements IBot, MessageCreateListener {
             if(reactionAddEvent.getMessageContent().equals("Hey SaitamaBot")){
                 reactionAddEvent.getChannel().sendMessage("Hey" +reactionAddEvent.getUser());
             }
-          });
+            if(reactionAddEvent.getMessageContent().equals("stop SaitamaBot")) {
+                disconnect();
+            }
+          }).removeAfter(30, TimeUnit.MINUTES);;
     }
 
     @Override
@@ -75,6 +80,7 @@ public class SaitamaBot implements IBot, MessageCreateListener {
             if (event.getEmoji().equalsEmoji("👎")) {
                 event.deleteMessage();
             }
+
         }).removeAfter(30, TimeUnit.MINUTES);
     }
 
@@ -84,6 +90,8 @@ public class SaitamaBot implements IBot, MessageCreateListener {
         if (messageCreateEvent.getMessageContent().equalsIgnoreCase("!ping")) {
             channel = messageCreateEvent.getChannel();
             messageCreateEvent.getChannel().sendMessage("Pong!");
+            channel.sendMessage("Hi Guys"+"@"+channel);
+
         }
     }
 
