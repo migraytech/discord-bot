@@ -161,11 +161,11 @@ public class SaitamaBot implements IBot, MessageCreateListener {
             disconnect();
         }
 
-        if(messageCreateEvent.getMessageContent().contains("bad word")){
-
-            messageCreateEvent.().getController().kick(messageCreateEvent.getMember()).complete();
-
-        }
+//        if(messageCreateEvent.getMessageContent().contains("bad word")){
+//
+//            messageCreateEvent.().getController().kick(messageCreateEvent.getMember()).complete();
+//
+//        }
     }
 
     @Override
