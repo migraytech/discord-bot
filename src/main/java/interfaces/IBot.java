@@ -1,4 +1,4 @@
-import org.javacord.api.event.message.MessageCreateEvent;
+package interfaces;
 
 public interface IBot {
 
