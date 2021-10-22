@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Message Listener
  *
- * @param event
+ * @param
  */
 
 public class SaitamaBot implements IBot, MessageCreateListener {
@@ -63,7 +63,7 @@ public class SaitamaBot implements IBot, MessageCreateListener {
     /**
      * Message Listener
      *
-     * @param event
+     * @param
      */
 
      @Override
@@ -100,7 +100,7 @@ public class SaitamaBot implements IBot, MessageCreateListener {
     /**
      * Message Listener
      *
-     * @param event
+     * @param
      */
     @Override
     public void start() {
@@ -112,7 +112,7 @@ public class SaitamaBot implements IBot, MessageCreateListener {
     /**
      * Message Listener
      *
-     * @param event
+     * @param
      */
     @Override
     public void disconnect() {
@@ -125,7 +125,7 @@ public class SaitamaBot implements IBot, MessageCreateListener {
     /**
      * Message Listener
      *
-     * @param event
+     * @param
      */
 
     @Override
@@ -171,7 +171,7 @@ public class SaitamaBot implements IBot, MessageCreateListener {
     /**
      * Message Listener
      *
-     * @param event
+     * @param messageCreateEvent
      */
     @Override
     public void onMessageCreate(MessageCreateEvent messageCreateEvent) {
@@ -210,7 +210,7 @@ public class SaitamaBot implements IBot, MessageCreateListener {
     /**
      * Message Listener
      *
-     * @param event
+     * @param
      */
     @Override
     public void removeMessage() {

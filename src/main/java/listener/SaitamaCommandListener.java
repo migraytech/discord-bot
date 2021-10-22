@@ -30,13 +30,14 @@ public class SaitamaCommandListener implements ICommandListener {
 
     private static final Logger logger = LogManager.getLogger(SaitamaCommandListener.class);
     private final static Pattern pattern = Pattern.compile("!clean (\\w+)");
+
     private MessageBuilderService messageBuilderService;
     private String word;
 
     /**
      * Message Listener
      *
-     * @param event
+     * @param messageCreateEvent
      */
     @Override
     public void onMessageCreate(MessageCreateEvent messageCreateEvent) {
