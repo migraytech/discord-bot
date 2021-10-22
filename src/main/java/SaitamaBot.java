@@ -1,4 +1,8 @@
+import Service.MessageBuilderService;
 import interfaces.IBot;
+import listener.SaitamaAudioListener;
+import listener.SaitamaCommandListener;
+import listener.SaitamaModeratorListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.javacord.api.DiscordApi;
@@ -20,24 +24,29 @@ import java.util.concurrent.TimeUnit;
 public class SaitamaBot implements IBot, MessageCreateListener {
 
     private final String version = "1.0";
+    @jdk.nashorn.internal.runtime.logging.Logger
     private static final Logger logger = LogManager.getLogger(SaitamaBot.class);
     private final double id = 0.1;
 
 
+    private MessageBuilderService messageBuilderService;
+
     ///TODO
 
     //CLASSES that are checking and are responsible
+
     //commands
+
     //music
+
     //monitoring
 
 
     private static  TextChannel channel= null;
     private static ServerTextChannel serverTextChannel = null;
 
-    //INFO//
     private static DiscordApi discordApi;
-    private final String token = "OTAxMDEwMjAzMDYxOTQwMjM1.YXJpJA.xIxtx6sE5UNFIozgRnvzBML8wrM";
+    private final String token = "OTAxMDEwMjAzMDYxOTQwMjM1.YXJpJA.58vkWyJ_5pSSSQIuygABvFJf80g";
 
     public SaitamaBot() {
     }
@@ -50,11 +59,10 @@ public class SaitamaBot implements IBot, MessageCreateListener {
                 .addServerBecomesAvailableListener(event -> {
                     System.out.println("Loaded " + event.getServer().getName());
                 })
-
                 .addListener(new SaitamaBot())
-//                 .addListener(new Saitamaudiolistener())
-//                 .addListener(new SaitamaCommandListener())
-
+                .addListener(new SaitamaAudioListener())
+                 .addListener(new SaitamaModeratorListener())
+                .addListener(new SaitamaCommandListener())
                 .setWaitForServersOnStartup(false)
                 .login()
                 .join();
@@ -95,7 +103,7 @@ public class SaitamaBot implements IBot, MessageCreateListener {
 
 
             if(reactionAddEvent.getMessageContent().equals("Hi SaitamaBot"))
-                reactionAddEvent.getChannel().sendMessage("Hi! :smiley:").join();
+                reactionAddEvent.getChannel().sendMessage("Hi! :smiley:"+reactionAddEvent.getMessage().getUserAuthor().get().getName());
 
             if(reactionAddEvent.getMessageContent().equals("!commands") || reactionAddEvent.getMessageContent().equals("!help")) {
 
@@ -126,14 +134,14 @@ public class SaitamaBot implements IBot, MessageCreateListener {
                 reactionAddEvent.getChannel().sendMessage(String.valueOf(new MessageBuilder()
                         .append("!spam <@user> ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Choose your victim to get spammed").send(channel))).join();
             }
-        }).removeAfter(50,TimeUnit.MINUTES);
+        });
     }
 
     @Override
     public void onMessageCreate(MessageCreateEvent messageCreateEvent) {
         serverTextChannel = messageCreateEvent.getServerTextChannel().get();
         channel = messageCreateEvent.getChannel();
-        // Add a listener which answers with "Pong!" if someone writes "!ping"
+
         if (messageCreateEvent.getMessageContent().equalsIgnoreCase("!ping") || messageCreateEvent.getMessageContent().equals("!info"))  {
 
             messageCreateEvent.getChannel().sendMessage("HI!" + messageCreateEvent.getMessage().getUserAuthor().get().getName());
@@ -162,11 +170,6 @@ public class SaitamaBot implements IBot, MessageCreateListener {
             disconnect();
         }
 
-//        if(messageCreateEvent.getMessageContent().contains("bad word")){
-//
-//            messageCreateEvent.().getController().kick(messageCreateEvent.getMember()).complete();
-//
-//        }
     }
 
     @Override

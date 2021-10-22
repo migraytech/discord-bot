@@ -4,9 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3f80e193-3ea2-4aa3-a5df-8a16a2242838" name="Default Changelist" comment="CAdded">
-      <change beforePath="$PROJECT_DIR$/src/main/java/IBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/IBot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SaitamaCommandListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SaitamaCommandListener.java" afterDir="false" />
+    <list default="true" id="3f80e193-3ea2-4aa3-a5df-8a16a2242838" name="Default Changelist" comment="Create new interfaces for the listeners classes">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Service/MessageBuilderService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/interfaces/IMessageBuilderService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/interfaces/IModeratorListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/listener/SaitamaModeratorListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SaitamaBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SaitamaBot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SaitamaCommandListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/listener/SaitamaCommandListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Saitamaudiolistener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/listener/SaitamaAudioListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interfaces/CommandListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interfaces/ICommandListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interfaces/IAudioListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interfaces/IAudioListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/IBot.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SaitamaBot.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SaitamaBot.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/SaitamaCommandListener.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Saitamaudiolistener.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +28,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -84,7 +96,7 @@
       <updated>1634887631790</updated>
       <workItem from="1634887633678" duration="8589000" />
       <workItem from="1634896675757" duration="12030000" />
-      <workItem from="1634908894167" duration="2069000" />
+      <workItem from="1634908894167" duration="5684000" />
     </task>
     <task id="LOCAL-00001" summary="CAdded">
       <created>1634896856274</created>
@@ -93,7 +105,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634896856274</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Create new interfaces for the listeners classes">
+      <created>1634916345865</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1634916345865</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -113,6 +132,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="CAdded" />
-    <option name="LAST_COMMIT_MESSAGE" value="CAdded" />
+    <MESSAGE value="Create new interfaces for the listeners classes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Create new interfaces for the listeners classes" />
   </component>
 </project>
