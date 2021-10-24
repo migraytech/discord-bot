@@ -5,13 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3f80e193-3ea2-4aa3-a5df-8a16a2242838" name="Default Changelist" comment="Create new interfaces for the listeners classes">
-      <change afterPath="$PROJECT_DIR$/src/main/java/commands/BanCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/commands/CleanCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/commands/KickCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/commands/MuteCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/commands/OnePunchCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/commands/ServerCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/commands/WatchAnimeCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SaitamaAudioListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SaitamaAudioListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SaitamaBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SaitamaBot.java" afterDir="false" />
@@ -80,13 +73,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -111,6 +106,7 @@
       <workItem from="1634931260707" duration="7980000" />
       <workItem from="1634999866728" duration="1921000" />
       <workItem from="1635065576929" duration="19107000" />
+      <workItem from="1635087861777" duration="1837000" />
     </task>
     <task id="LOCAL-00001" summary="CAdded">
       <created>1634896856274</created>
@@ -148,26 +144,5 @@
     <MESSAGE value="CAdded" />
     <MESSAGE value="Create new interfaces for the listeners classes" />
     <option name="LAST_COMMIT_MESSAGE" value="Create new interfaces for the listeners classes" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/SaitamaAudioListener.java</url>
-          <line>180</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/SaitamaAudioListener.java</url>
-          <line>171</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/SaitamaAudioListener.java</url>
-          <line>173</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

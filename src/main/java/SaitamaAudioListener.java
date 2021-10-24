@@ -57,12 +57,12 @@ public class SaitamaAudioListener extends ServerCommand implements IAudioListene
         //Create an audio source and add it to the audio connection's queue
         logger.info("START");
 
+
         if(messageCreateEvent.getMessageContent().startsWith("!play")) {
             Matcher matcher = pattern.matcher(messageCreateEvent.getMessageContent());
             
             String word = messageCreateEvent.getMessageContent();
-            AudioSource source = new LavaPlayerAudioSource(messageCreateEvent.getApi(), player);
-            ServerVoiceChannel serverVoiceChannel = messageCreateEvent.getApi().getServerVoiceChannelById(835207222753493042L).get();
+
 
             if (matcher.matches()) {
                     // split the message connect from !player command en url
@@ -77,9 +77,35 @@ public class SaitamaAudioListener extends ServerCommand implements IAudioListene
 
                             messageBuilderService.sendMessage(messageCreateEvent.getMessageAuthor(),"Song Requested",messageCreateEvent.getMessageAuthor().getMessage().toString(),"'Some footer text' ", "https://i0.kym-cdn.com/photos/images/original/001/049/085/9ff.png",messageCreateEvent.getChannel());
 
+                            AudioSource source = new LavaPlayerAudioSource(messageCreateEvent.getApi(), player);
+                            ServerVoiceChannel serverVoiceChannel = messageCreateEvent.getApi().getServerVoiceChannelById(835207222753493042L).get();
+
                             serverVoiceChannel.connect().thenAccept(audioConnection -> {
                                 audioConnection.setAudioSource(source);
+                                audioConnection.setSelfDeafened(true); // This is optional, but I prefer to have my bot deafen itself.
+                                playerManager.loadItem(query, new AudioLoadResultHandler() {
+                                            @Override
+                                            public void trackLoaded(AudioTrack track) {
+                                                player.playTrack(track);
+                                            }
 
+                                            @Override
+                                            public void playlistLoaded(AudioPlaylist playlist) {
+                                                for (AudioTrack track : playlist.getTracks()) {
+                                                    player.playTrack(track);
+                                                }
+                                            }
+
+                                            @Override
+                                            public void noMatches() {
+                                                // Notify the user that we've got nothing
+                                            }
+
+                                            @Override
+                                            public void loadFailed(FriendlyException throwable) {
+                                                // Notify the user that everything exploded
+                                            }
+                                        });
                                 play(query,messageCreateEvent.getServerTextChannel().get(), new ServerMusicManager(playerManager));
 
                             }).exceptionally(e -> {
@@ -171,15 +197,17 @@ public class SaitamaAudioListener extends ServerCommand implements IAudioListene
         // Load the track, we use isUrl to see if the argument is a URL, otherwise if it is not then we use YouTube Search to search the query.
         playerManager.loadItemOrdered(m, isUrl(query) ? query : "ytsearch: " + query, new FunctionalResultHandler(audioTrack -> {
             // This is for track loaded.
-            channel.sendMessage("We have added the track: " + audioTrack.getInfo().title);
             m.scheduler.queue(audioTrack);
+            channel.sendMessage("We have added the track: " + audioTrack.getInfo().title);
 
         }, audioPlaylist -> {
             // If the playlist is a search result, then we only need to get the first one.
             if (audioPlaylist.isSearchResult()) {
+
                 // YOU HAVE TO ADD THIS, UNLESS YOU WANT YOUR BOT TO GO SPAM MODE.
                 m.scheduler.queue(audioPlaylist.getTracks().get(0));
                 channel.sendMessage("We have added the track: " + audioPlaylist.getTracks().get(0).getInfo().title);
+
             } else {
                 // If it isn't then simply queue every track.
                 audioPlaylist.getTracks().forEach(audioTrack -> {
