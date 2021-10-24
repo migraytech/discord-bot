@@ -64,7 +64,7 @@ public class SaitamaBot implements IBot, MessageCreateListener {
     private static ServerTextChannel serverTextChannel = null;
 
     private static DiscordApi discordApi;
-    private final String token = "OTAxMDEwMjAzMDYxOTQwMjM1.YXJpJA.8S4LEnxI72NzUDmY_O3lUJrKUa4";
+    private final String token = "OTAxMDEwMjAzMDYxOTQwMjM1.YXJpJA.70ONOt23YhmpqxwwPbpiEpPLao4";
 
     public SaitamaBot() {
     }
@@ -181,13 +181,11 @@ public class SaitamaBot implements IBot, MessageCreateListener {
                                 .append("!mute <@user> ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Mute a member so they cannot type or speak for a limited time").send(channel))).join();
 
                 reactionAddEvent.getChannel().sendMessage(String.valueOf(new MessageBuilder()
-                        .append("!music <@url> ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Add me to VoiceChannel in Chill Friday VoiceChannel and start play music with  the command").send(channel))).join();
+                        .append("!play <@url> ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Add me to VoiceChannel in Chill Friday VoiceChannel and start play music with  the command").send(channel))).join();
 
                 reactionAddEvent.getChannel().sendMessage(String.valueOf(new MessageBuilder()
                                 .append("!watch-anime <@name> ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Watch anime video from kissanime.ru select the anime-name ").send(channel))).join();
 
-                reactionAddEvent.getChannel().sendMessage(String.valueOf(new MessageBuilder()
-                        .append("!spam <@user> ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Choose your victim to get spammed").send(channel))).join();
 
             }
             //reactionAddEvent.getChannel().typeContinuouslyAfter(5L,TimeUnit.valueOf("MILLISECONDS"));

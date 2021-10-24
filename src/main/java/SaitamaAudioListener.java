@@ -3,10 +3,10 @@ import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.player.FunctionalResultHandler;
-import com.sedmelluq.discord.lavaplayer.source.AudioSourceManager;
 import com.sedmelluq.discord.lavaplayer.tools.FriendlyException;
 import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
+import commands.ServerCommand;
 import interfaces.IAudioListener;
 import listener.SaitamaCommandListener;
 import org.apache.logging.log4j.LogManager;
@@ -14,11 +14,11 @@ import org.apache.logging.log4j.Logger;
 import org.javacord.api.audio.AudioSource;
 import org.javacord.api.entity.channel.ServerTextChannel;
 import org.javacord.api.entity.channel.ServerVoiceChannel;
+import org.javacord.api.entity.permission.PermissionType;
 import org.javacord.api.entity.server.Server;
 import org.javacord.api.entity.user.User;
 import org.javacord.api.event.message.MessageCreateEvent;
 
-import java.io.File;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,7 +28,7 @@ import java.util.regex.Pattern;
  *
  * @param
  */
-public class SaitamaAudioListener implements IAudioListener{
+public class SaitamaAudioListener extends ServerCommand implements IAudioListener{
 
 
     private final MessageBuilderService messageBuilderService = new MessageBuilderService();
@@ -43,6 +43,9 @@ public class SaitamaAudioListener implements IAudioListener{
 
     private final AudioPlayer player =  playerManager.createPlayer();
 
+    public SaitamaAudioListener(){
+        super("!play");
+    }
 
     /**
      * Message Listener
@@ -56,11 +59,11 @@ public class SaitamaAudioListener implements IAudioListener{
 
         if(messageCreateEvent.getMessageContent().startsWith("!play")) {
             Matcher matcher = pattern.matcher(messageCreateEvent.getMessageContent());
+            
             String word = messageCreateEvent.getMessageContent();
             AudioSource source = new LavaPlayerAudioSource(messageCreateEvent.getApi(), player);
             ServerVoiceChannel serverVoiceChannel = messageCreateEvent.getApi().getServerVoiceChannelById(835207222753493042L).get();
-            serverVoiceChannel.connect().join().setAudioSource(source);
-            System.out.println("TESTS");
+
             if (matcher.matches()) {
                     // split the message connect from !player command en url
                     String query = messageCreateEvent.getMessageContent().replace( "!play", " ").trim();
@@ -74,37 +77,17 @@ public class SaitamaAudioListener implements IAudioListener{
 
                             messageBuilderService.sendMessage(messageCreateEvent.getMessageAuthor(),"Song Requested",messageCreateEvent.getMessageAuthor().getMessage().toString(),"'Some footer text' ", "https://i0.kym-cdn.com/photos/images/original/001/049/085/9ff.png",messageCreateEvent.getChannel());
 
+                            serverVoiceChannel.connect().thenAccept(audioConnection -> {
+                                audioConnection.setAudioSource(source);
 
-                            play(query,messageCreateEvent.getServerTextChannel().get(), new ServerMusicManager(playerManager));
-                            // You can now use the AudioPlayer like you would normally do with Lavaplayer, e.g.,
-//                            playerManager.loadItem(query, new AudioLoadResultHandler() {
-//                                @Override
-//                                public void trackLoaded(AudioTrack track) {
-//                                    player.playTrack(track);
-//                                }
-//
-//                                @Override
-//                                public void playlistLoaded(AudioPlaylist playlist) {
-//                                    for (AudioTrack track : playlist.getTracks()) {
-//                                        System.out.println("PLAY");
-//                                        logger.info("PLAY");
-//                                        player.playTrack(track);
-//                                    }
-//                                }
-//
-//                                @Override
-//                                public void noMatches() {
-//                                    // Notify the user that we've got nothing
-//                                    logger.info("PLAY");
-//
-//                                }
-//
-//                                @Override
-//                                public void loadFailed(FriendlyException e) {
-//                                    logger.info("PLAY");
-//
-//                                }
-//                            });
+                                play(query,messageCreateEvent.getServerTextChannel().get(), new ServerMusicManager(playerManager));
+
+                            }).exceptionally(e -> {
+                                // Failed to connect to voice channel (no permissions?)
+                                e.printStackTrace();
+                                return null;
+                            });
+
                         }
                         catch (Exception e)
                         {
@@ -118,6 +101,63 @@ public class SaitamaAudioListener implements IAudioListener{
             }
 
         }
+    }
+
+    @Override
+    protected void runCommand(MessageCreateEvent event, Server server, ServerTextChannel channel, User user, String[] args) {
+        // Make sure the message have arguments above one (for example: play kano 2020 remix or play https://youtube.com/...).
+//        if(args.length > 1){
+//
+//            // We first check if the user is in any voice channel.
+//            event.getMessageAuthor().getConnectedVoiceChannel().isPresent(voiceChannel -> {
+//
+//                // We have checked that the user is in a channel, but can we see the channel, can we connect and can we speak on the channel?
+//                if(voiceChannel.canYouConnect() && voiceChannel.canYouSee() && voiceChannel.hasPermission(event.getApi().getYourself(), PermissionType.SPEAK)){
+//
+//                    //  We retrieve the ServerMusicManager from the AudioManager class which will create it if it doesn't exist.
+//                    ServerMusicManager m = AudioManager.get(server.getId());
+//
+//                    // We retrieve the URL or the query.
+//                    String query = event.getMessageContent().replace(args[0] + " ", "");
+//
+//                    if (!voiceChannel.isConnected(event.getApi().getYourself()) && server.getAudioConnection().isEmpty()) {
+//
+//                        voiceChannel.connect().thenAccept(audioConnection -> {
+//                            // Create an audio source and add to audio connection queue, this is where we use the ServerMusicManager as well.
+//                            AudioSource audio = new LavaPlayerAudioSource(event.getApi(), m.player);
+//                            audioConnection.setAudioSource(audio);
+//                            audioConnection.setSelfDeafened(true); // This is optional, but I prefer to have my bot deafen itself.
+//
+//                            // Plays the music.
+//                            play(query, channel, m);
+//
+//                        });
+//
+//                        // If the bot is already on a channel, and is playing music.
+//                    } else if (server.getAudioConnection().isPresent()) {
+//                        // Gets the audio connection.
+//                        server.getAudioConnection().ifPresent(audioConnection -> {
+//                            // Checks if the user is in the same channel as the bot.
+//                            if(audioConnection.getChannel().getId() == voiceChannel.getId()) {
+//                                // Create an audio source and add to audio connection queue, this is where we use the ServerMusicManager as well.
+//                                AudioSource audio = new LavaPlayerAudioSource(event.getApi(), m.player);
+//                                audioConnection.setAudioSource(audio);
+//                                audioConnection.setSelfDeafened(true); // This is optional, but I prefer to have my bot deafen itself.
+//
+//                                // Plays the music.
+//                                play(query, channel, m);
+//                            } else {
+//                                event.getChannel().sendMessage("You are not connected with the same channel as the bot.");
+//                            }
+//                        });
+//                    }
+//                } else {
+//                    // Tell the user that we cannot connect, or see, or speak in the channel.
+//                    event.getChannel().sendMessage("Either I cannot connect, cannot see, or do not have the permission to speak on the channel.");
+//                }
+//            }, () -> event.getChannel().sendMessage("You are not connected in any voice channel."));
+//        }
+//    }
     }
 
 
