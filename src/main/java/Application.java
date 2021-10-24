@@ -8,9 +8,9 @@ public class Application {
         saitamaBot = new SaitamaBot();
         saitamaBot.setup();
         saitamaBot.start();
-
-
+        saitamaBot.addInVoiceChannel();
         saitamaBot.onMessageReceived();
         saitamaBot.removeMessage();
+
     }
 }

@@ -1,14 +1,10 @@
-import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
-import com.sedmelluq.discord.lavaplayer.tools.FriendlyException;
-import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist;
-import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import com.sedmelluq.discord.lavaplayer.track.playback.AudioFrame;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.audio.AudioSource;
 import org.javacord.api.audio.AudioSourceBase;
 
-public class LavaplayerAudioSource extends AudioSourceBase {
+public class LavaPlayerAudioSource extends AudioSourceBase {
 
     private final AudioPlayer audioPlayer;
     private AudioFrame lastFrame;
@@ -19,7 +15,7 @@ public class LavaplayerAudioSource extends AudioSourceBase {
      * @param api A discord api instance.
      * @param audioPlayer An audio player from Lavaplayer.
      */
-    public LavaplayerAudioSource(DiscordApi api, AudioPlayer audioPlayer) {
+    public LavaPlayerAudioSource(DiscordApi api, AudioPlayer audioPlayer) {
         super(api);
         this.audioPlayer = audioPlayer;
     }
@@ -51,7 +47,7 @@ public class LavaplayerAudioSource extends AudioSourceBase {
 
     @Override
     public AudioSource copy() {
-        return new LavaplayerAudioSource(getApi(), audioPlayer);
+        return new LavaPlayerAudioSource(getApi(), audioPlayer);
     }
 }
 

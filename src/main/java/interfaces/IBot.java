@@ -7,4 +7,5 @@ public interface IBot {
     void disconnect();
     void onMessageReceived();
     void removeMessage();
+    void addInVoiceChannel();
 }

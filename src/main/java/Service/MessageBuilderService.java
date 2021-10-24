@@ -11,7 +11,7 @@ public class MessageBuilderService implements IMessageBuilderService {
     /**
      * Message Listener
      *
-     * @param event
+     * @param title,description,footer
      */
     @Override
     public void sendMessage(MessageAuthor messageAuthor, String title, String description, String footer, String thumbnail, TextChannel textChannel) {

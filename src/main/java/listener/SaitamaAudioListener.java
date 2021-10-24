@@ -12,11 +12,8 @@ import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import interfaces.IAudioListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.javacord.api.DiscordApi;
+import org.javacord.api.audio.AudioSource;
 import org.javacord.api.event.message.MessageCreateEvent;
-import org.javacord.api.listener.GloballyAttachableListener;
-
-import java.util.function.Function;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -29,15 +26,25 @@ import java.util.regex.Pattern;
 public class SaitamaAudioListener implements IAudioListener {
 
 
-    private MessageBuilderService messageBuilderService;
+    private final MessageBuilderService messageBuilderService = new MessageBuilderService();
 
     private static final Logger logger = LogManager.getLogger(SaitamaCommandListener.class);
+
+
     private final static Pattern pattern = Pattern.compile("!play (\\w+)");
 
-    public SaitamaAudioListener(){
 
+    private AudioPlayerManager playerManager =  PlayerManager.getManager();
+    private  AudioPlayer player;
+
+
+
+    @Override
+    public void setPlayerManager(AudioPlayerManager audioPlayerManager) {
+        System.out.println(audioPlayerManager == null);
+        this.playerManager = audioPlayerManager;
+        this.player =  audioPlayerManager.createPlayer();
     }
-
 
     /**
      * Message Listener
@@ -47,23 +54,68 @@ public class SaitamaAudioListener implements IAudioListener {
     @Override
     public void onMessageCreate(MessageCreateEvent messageCreateEvent) {
 
-        if(messageCreateEvent.getMessageContent().startsWith("!play")){
+        //Create an audio source and add it to the audio connection's queue
+        logger.info("START");
+        if(messageCreateEvent.getMessageContent().startsWith("!play")) {
             Matcher matcher = pattern.matcher(messageCreateEvent.getMessageContent());
             String word = messageCreateEvent.getMessageContent();
+            System.out.println("TESTS");
             logger.info("TEST");
-            if(matcher.matches()){
+            if (matcher.matches()) {
 
-                // split the message connect from !player command en url
+                    System.out.println("PLAY TRACK");
+                    // split the message connect from !player command en url
 
-                //Send the MessageBuilder with the url and image of the video;
+                    //Send the MessageBuilder with the url and image of the video;
 
-                // messageBuilderService.sendMessage();
+                    // messageBuilderService.sendMessage();
+                    try {
+
+                        //
+                        messageBuilderService.sendMessage(messageCreateEvent.getMessageAuthor(),"Song title",messageCreateEvent.getMessageAuthor().getMessage().toString(),"test","",messageCreateEvent.getChannel());
+                        // You can now use the AudioPlayer like you would normally do with Lavaplayer, e.g.,
+                        playerManager.loadItem("https://www.youtube.com/watch?v=PY8f1Z3nARo", new AudioLoadResultHandler() {
+                            @Override
+                            public void trackLoaded(AudioTrack track) {
+                                player.playTrack(track);
+                            }
+
+                            @Override
+                            public void playlistLoaded(AudioPlaylist playlist) {
+                                for (AudioTrack track : playlist.getTracks()) {
+                                    System.out.println("PLAY");
+                                    logger.info("PLAY");
+                                    player.playTrack(track);
+                                }
+                            }
+
+                            @Override
+                            public void noMatches() {
+                                // Notify the user that we've got nothing
+                                logger.info("PLAY");
+
+                            }
+
+                            @Override
+                            public void loadFailed(FriendlyException e) {
+                                logger.info("PLAY");
+
+                            }
+                        });
+                    }
+                    catch (Exception e)
+                    {
+                        e.printStackTrace();
+                    }
+
+
+
 
 
 
             }
             else {
-                messageCreateEvent.getChannel().sendMessage("Are you trying to use the "+word+"  command? Please use the syntax "+" "+"[word]."+"Thanks!");
+                messageCreateEvent.getChannel().sendMessage("Are you trying to use the "+word+ "command? Please use the syntax "+"!play"+"[url]."+"Thanks!");
             }
 
         }
