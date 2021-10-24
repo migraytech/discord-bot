@@ -1,19 +1,31 @@
 import Service.MessageBuilderService;
+
+import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
+import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
+import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
+import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager;
+import com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeAudioSourceManager;
+import com.sedmelluq.discord.lavaplayer.tools.FriendlyException;
+import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist;
+import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import interfaces.IBot;
-import listener.SaitamaAudioListener;
 import listener.SaitamaCommandListener;
 import listener.SaitamaModeratorListener;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
+import org.javacord.api.audio.AudioSource;
 import org.javacord.api.entity.channel.ServerTextChannel;
+import org.javacord.api.entity.channel.ServerVoiceChannel;
 import org.javacord.api.entity.channel.TextChannel;
 import org.javacord.api.entity.message.MessageBuilder;
 import org.javacord.api.entity.message.MessageDecoration;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
+import org.javacord.api.util.logging.ExceptionLogger;
 
 import java.awt.*;
 import java.io.File;
@@ -23,22 +35,19 @@ import java.util.concurrent.TimeUnit;
 /**
  * Message Listener
  *
- * @param event
+ * @param
  */
 
 public class SaitamaBot implements IBot, MessageCreateListener {
+
     /**
      * Message Listener
      *
      * @param event
      */
     private final String version = "1.0";
-    @jdk.nashorn.internal.runtime.logging.Logger
     private static final Logger logger = LogManager.getLogger(SaitamaBot.class);
     private final double id = 0.1;
-
-
-    private MessageBuilderService messageBuilderService;
 
     ///TODO
 
@@ -55,7 +64,7 @@ public class SaitamaBot implements IBot, MessageCreateListener {
     private static ServerTextChannel serverTextChannel = null;
 
     private static DiscordApi discordApi;
-    private final String token = "OTAxMDEwMjAzMDYxOTQwMjM1.YXJpJA.58vkWyJ_5pSSSQIuygABvFJf80g";
+    private final String token = "OTAxMDEwMjAzMDYxOTQwMjM1.YXJpJA.70ONOt23YhmpqxwwPbpiEpPLao4";
 
     public SaitamaBot() {
     }
@@ -63,56 +72,70 @@ public class SaitamaBot implements IBot, MessageCreateListener {
     /**
      * Message Listener
      *
-     * @param event
+     * @param
      */
 
      @Override
     public void setup() {
-         logger.info("Create Saitamabot:  "+id+"  "+version);
+
+         PlayerManager.init();
+         logger.trace("Create Saitamabot:  "+id+"  "+version);
+
+
          discordApi = new DiscordApiBuilder()
                 .setToken(token)
                 .addServerBecomesAvailableListener(event -> {
                     System.out.println("Loaded " + event.getServer().getName());
                 })
-                .addListener(new SaitamaBot())
-                .addListener(new SaitamaAudioListener())
+                 .addListener(new SaitamaBot())
+                 .addListener(new SaitamaAudioListener())
                  .addListener(new SaitamaModeratorListener())
-                .addListener(new SaitamaCommandListener())
-                .setWaitForServersOnStartup(false)
+                 .addListener(new SaitamaCommandListener())
+                 .setWaitForServersOnStartup(false)
+//                 .setTotalShards(10)
+//                 .loginAllShards()
+//                 .forEach(shardFuture -> shardFuture
+//                         .thenAcceptAsync(SaitamaBot::onShardLogin)
+//                         .exceptionally(ExceptionLogger.get())
+//                 )
+
                 .login()
                 .join();
 
-         discordApi.addServerMemberJoinListener(event -> {
-             Optional<TextChannel> channel = discordApi.getTextChannelById(901090217556054066L);
-             channel.ifPresent(textChannel -> textChannel.sendMessage("Welcome to the server, " + event.getUser().getMentionTag() + "!"));
-         });
 
-
-         discordApi.addServerMemberJoinListener(event -> {
-             Optional<TextChannel> channel = discordApi.getTextChannelById(835207136643907716L);
-             channel.ifPresent(textChannel -> textChannel.sendMessage("Welcome to the server, " + event.getUser().getMentionTag() + "!"));
-         });
+         System.out.println("Connected to shard " + discordApi.getCurrentShard());
 
          discordApi.setMessageCacheSize(10, 60);
          System.out.println("Setup the bot...");
-         logger.info("Setup the bot... ");
+         logger.trace("Setup the bot... ");
     }
+
+//    private static void onShardLogin(DiscordApi api) {
+//        System.out.println("Shard " + api.getCurrentShard() + " logged in!");
+//        // You can treat the shard like a normal bot account, e.g. registering listeners
+//        api.addMessageCreateListener(event -> {
+//            // ...
+//        });
+//    }
+
+
     /**
      * Message Listener
      *
-     * @param event
+     * @param
      */
     @Override
     public void start() {
-        //System.out.println("You can invite the bot by using the following url:" + discordApi.createBotInvite());
-        logger.info( "Start the SaitamaBot... ");
+        System.out.println("You can invite the bot by using the following url:" + discordApi.createBotInvite());
+        logger.trace( "Start the SaitamaBot... ");
+        System.out.println("Start the SaitamaBot..");
 
     }
 
     /**
      * Message Listener
      *
-     * @param event
+     * @param
      */
     @Override
     public void disconnect() {
@@ -122,19 +145,17 @@ public class SaitamaBot implements IBot, MessageCreateListener {
     }
 
 
+
     /**
      * Message Listener
      *
-     * @param event
+     * @param
      */
-
     @Override
     public void onMessageReceived() {
         discordApi.addMessageCreateListener(reactionAddEvent -> {
-
-
-            if(reactionAddEvent.getMessageContent().equals("Hi SaitamaBot"))
-                reactionAddEvent.getChannel().sendMessage("Hi! :smiley:"+reactionAddEvent.getMessage().getUserAuthor().get().getName());
+            if(reactionAddEvent.getMessageContent().equals("Hi Saitama-bot"))
+                reactionAddEvent.getChannel().sendMessage("Hi! :smiley:  "+reactionAddEvent.getMessage().getUserAuthor().get().getName());
 
             if(reactionAddEvent.getMessageContent().equals("!commands") || reactionAddEvent.getMessageContent().equals("!help")) {
 
@@ -160,26 +181,30 @@ public class SaitamaBot implements IBot, MessageCreateListener {
                                 .append("!mute <@user> ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Mute a member so they cannot type or speak for a limited time").send(channel))).join();
 
                 reactionAddEvent.getChannel().sendMessage(String.valueOf(new MessageBuilder()
-                                .append("!watch-anime <@name> ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Watch anime video from kissanime.ru select the anime-name ").send(channel))).join();
+                        .append("!play <@url> ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Add me to VoiceChannel in Chill Friday VoiceChannel and start play music with  the command").send(channel))).join();
 
                 reactionAddEvent.getChannel().sendMessage(String.valueOf(new MessageBuilder()
-                        .append("!spam <@user> ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Choose your victim to get spammed").send(channel))).join();
+                                .append("!watch-anime <@name> ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Watch anime video from kissanime.ru select the anime-name ").send(channel))).join();
+
+
             }
+            //reactionAddEvent.getChannel().typeContinuouslyAfter(5L,TimeUnit.valueOf("MILLISECONDS"));
+
         });
     }
+
+
 
     /**
      * Message Listener
      *
-     * @param event
+     * @param messageCreateEvent
      */
     @Override
     public void onMessageCreate(MessageCreateEvent messageCreateEvent) {
         serverTextChannel = messageCreateEvent.getServerTextChannel().get();
         channel = messageCreateEvent.getChannel();
-
         if (messageCreateEvent.getMessageContent().equalsIgnoreCase("!ping") || messageCreateEvent.getMessageContent().equals("!info"))  {
-
             messageCreateEvent.getChannel().sendMessage("HI!" + messageCreateEvent.getMessage().getUserAuthor().get().getName());
             channel.sendMessage("Hi Guys  "+"@"+ serverTextChannel.getServer().getName() +"  " +  "Dont forget to subscribe on my friends Youtube Channel Migray-Tech!!");
             channel.sendMessage("Free to ask what kinda anime or programming tutorials you wanna watch!").join();
@@ -194,9 +219,9 @@ public class SaitamaBot implements IBot, MessageCreateListener {
                             .setTitle("WOW")
                             .setDescription("ONE PUNCH")
                             .setColor(Color.ORANGE))
+
                     .send(channel)));
 
-            messageCreateEvent.getChannel().typeContinuouslyAfter(5L,TimeUnit.valueOf("MINUTES"));
 
         }
 
@@ -207,10 +232,12 @@ public class SaitamaBot implements IBot, MessageCreateListener {
         }
 
     }
+
+
     /**
      * Message Listener
      *
-     * @param event
+     * @param
      */
     @Override
     public void removeMessage() {
@@ -221,8 +248,5 @@ public class SaitamaBot implements IBot, MessageCreateListener {
             }
         }).removeAfter(30, TimeUnit.MINUTES);
     }
-
-
-
-
 }
+
