@@ -4,6 +4,9 @@ import Service.MessageBuilderService;
 import interfaces.ICommandListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.javacord.api.entity.channel.ServerTextChannel;
+import org.javacord.api.entity.server.Server;
+import org.javacord.api.entity.user.User;
 import org.javacord.api.event.message.MessageCreateEvent;
 
 import java.util.regex.Matcher;
@@ -30,13 +33,14 @@ public class SaitamaCommandListener implements ICommandListener {
 
     private static final Logger logger = LogManager.getLogger(SaitamaCommandListener.class);
     private final static Pattern pattern = Pattern.compile("!clean (\\w+)");
+
     private MessageBuilderService messageBuilderService;
     private String word;
 
     /**
      * Message Listener
      *
-     * @param event
+     * @param messageCreateEvent
      */
     @Override
     public void onMessageCreate(MessageCreateEvent messageCreateEvent) {
@@ -67,4 +71,6 @@ public class SaitamaCommandListener implements ICommandListener {
         }
 
     }
+
+
 }
