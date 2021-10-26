@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3f80e193-3ea2-4aa3-a5df-8a16a2242838" name="Default Changelist" comment="Create new interfaces for the listeners classes">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/reference.conf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SaitamaAudioListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SaitamaAudioListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SaitamaBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SaitamaBot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SaitamaAudioListener$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SaitamaAudioListener$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SaitamaAudioListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SaitamaAudioListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SaitamaBot.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SaitamaBot.class" afterDir="false" />
-    </list>
+    <list default="true" id="3f80e193-3ea2-4aa3-a5df-8a16a2242838" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -81,7 +73,7 @@
   <component name="RunManager">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <envs>
-        <env name="DISCORD_TOKEN" value="OTAxMDEwMjAzMDYxOTQwMjM1.YXJpJA.zU-w_tJwzzzd1o0_Cvi7u0Y_OnQ" />
+        <env name="DISCORD_TOKEN" value="OTAxMDEwMjAzMDYxOTQwMjM1.YXJpJA.qAyw7fiAGyzJZca0VRDLhyE0j8Q" />
       </envs>
       <option name="MAIN_CLASS_NAME" value="Application" />
       <module name="discord-bot" />

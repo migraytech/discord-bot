@@ -110,9 +110,8 @@ public class SaitamaAudioListener extends ServerCommand implements IAudioListene
                         e.printStackTrace();
                     }
                 }
-                else {
-                    messageCreateEvent.getChannel().sendMessage("Are you trying to use the " + word + " command? Please use the syntax " + "!play" + "[yt-url]." + "Thanks!");
-                }
+            } else {
+                messageCreateEvent.getChannel().sendMessage("Are you trying to use the " + word + " command? Please use the syntax " + "!play" + "[yt-url]." + "Thanks!");
             }
         }
     }
