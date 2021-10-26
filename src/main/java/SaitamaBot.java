@@ -64,7 +64,10 @@ public class SaitamaBot implements IBot, MessageCreateListener {
     private static ServerTextChannel serverTextChannel = null;
 
     private static DiscordApi discordApi;
-    private final String token = "OTAxMDEwMjAzMDYxOTQwMjM1.YXJpJA.70ONOt23YhmpqxwwPbpiEpPLao4";
+
+    ///System.getem(DISCORD_TOLEKEN methode
+
+    private final String token = System.getenv("DISCORD_TOKEN");
 
     public SaitamaBot() {
     }
