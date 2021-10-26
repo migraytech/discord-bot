@@ -65,8 +65,9 @@ public class SaitamaBot implements IBot, MessageCreateListener {
 
     private static DiscordApi discordApi;
 
-    ///System.getem(DISCORD_TOLEKEN methode // make fist a .env folder in resource
-    private final String token = "OTAxMDEwMjAzMDYxOTQwMjM1.YXJpJA.xpkrU2LnomhpDsc6UoyzuS_keEk";
+    ///System.getem(DISCORD_TOLEKEN methode
+
+    private final String token = System.getenv("DISCORD_TOKEN");
 
     public SaitamaBot() {
     }
