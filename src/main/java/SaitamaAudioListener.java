@@ -1,9 +1,8 @@
 import Service.MessageBuilderService;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.player.FunctionalResultHandler;
-import commands.ServerCommand;
+import Service.ServerCommand;
 import interfaces.IAudioListener;
-import listener.SaitamaCommandListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.javacord.api.audio.AudioSource;
@@ -27,7 +26,7 @@ public class SaitamaAudioListener extends ServerCommand implements IAudioListene
 
     private final MessageBuilderService messageBuilderService = new MessageBuilderService();
 
-    private static final Logger logger = LogManager.getLogger(SaitamaCommandListener.class);
+    private static final Logger logger = LogManager.getLogger(SaitamaAudioListener.class);
 
 
     private final static Pattern pattern = Pattern.compile("!play (https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]");

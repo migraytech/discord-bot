@@ -6,7 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="3f80e193-3ea2-4aa3-a5df-8a16a2242838" name="Default Changelist" comment="Create new interfaces for the listeners classes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SaitamaAudioListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SaitamaAudioListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/SaitamaBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SaitamaBot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/commands/BanCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/commands/BanCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/commands/CleanCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/commands/CleanCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/commands/KickCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/commands/KickCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/commands/MuteCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/commands/MuteCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/commands/OnePunchCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/commands/OnePunchCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/commands/ServerCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Service/ServerCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/commands/WatchAnimeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/commands/WatchAnimeCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/listener/SaitamaCommandListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/listener/SaitamaModeratorListener.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,7 +87,7 @@
   <component name="RunManager">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <envs>
-        <env name="DISCORD_TOKEN" value="OTAxMDEwMjAzMDYxOTQwMjM1.YXJpJA.qAyw7fiAGyzJZca0VRDLhyE0j8Q" />
+        <env name="DISCORD_TOKEN" value="OTAxMDEwMjAzMDYxOTQwMjM1.YXJpJA.3B2b21a-VuKunH5FQooGvFI4hFI" />
       </envs>
       <option name="MAIN_CLASS_NAME" value="Application" />
       <module name="discord-bot" />
@@ -91,6 +101,17 @@
           <ENTRY IS_ENABLED="true" PARSER="runconfig" />
         </ENTRIES>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -121,6 +142,8 @@
       <workItem from="1635251718227" duration="7284000" />
       <workItem from="1635259069191" duration="1465000" />
       <workItem from="1635409080550" duration="720000" />
+      <workItem from="1635881283788" duration="381000" />
+      <workItem from="1635881683766" duration="4695000" />
     </task>
     <task id="LOCAL-00001" summary="CAdded">
       <created>1634896856274</created>
@@ -170,5 +193,16 @@
     <MESSAGE value="CAdded" />
     <MESSAGE value="Create new interfaces for the listeners classes" />
     <option name="LAST_COMMIT_MESSAGE" value="Create new interfaces for the listeners classes" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/commands/KickCommand.java</url>
+          <line>26</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

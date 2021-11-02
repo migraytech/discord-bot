@@ -1,4 +1,4 @@
-package commands;
+package Service;
 
 import org.javacord.api.entity.channel.ServerTextChannel;
 import org.javacord.api.entity.server.Server;
@@ -14,7 +14,7 @@ public abstract class ServerCommand  implements MessageCreateListener {
      */
 
     private String command;
-    private String prefix = ".";
+    private String prefix = "!";
 
     protected ServerCommand(String command){
         this.command = command;
