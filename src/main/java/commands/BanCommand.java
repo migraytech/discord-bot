@@ -14,7 +14,7 @@ import java.io.File;
 public class BanCommand extends ServerCommand {
 
 
-    private MessageBuilderService messageBuilderService = new MessageBuilderService();
+    private final MessageBuilderService messageBuilderService = new MessageBuilderService();
     public BanCommand() {
         super("ban");
     }
@@ -32,12 +32,14 @@ public class BanCommand extends ServerCommand {
                 //split the Message
                 System.out.println("Start to ban the user!");
                 String username = args[1];
-                //User banUser = event.getServer().get().getMembers().stream().filter(user1 -> user1.getName().equals(username)).findFirst().get();
-                //event.getServer().get().banUser(banUser);
-                event.getChannel().sendMessage(new File("C:/Users/Mignon/Pictures/pic4.jpg"));
-                //BufferedImage image = ImageIO.read(getClass().getResource("/resources/icon.gif"));
-                //event.getChannel().sendMessage(new File("C:/Users/Mignon/Pictures/saitama-bot-response-gifs"));
-
+                if(event.getServer().get().getMembers().stream().anyMatch(user1 -> user1.getName().equals(username))) {
+                    User banUser = event.getServer().get().getMembers().stream().filter(user1 -> user1.getName().equals(username)).findFirst().get();
+                    event.getServer().get().banUser(banUser);
+                    messageBuilderService.sendMessage(event.getMessageAuthor(),"BAN "+username," "," "," ", " ",event.getChannel());
+                    event.getChannel().sendMessage(new File("C:/Users/Mignon/Pictures/pic3.jpg"));
+                    return;
+                }
+                event.getChannel().sendMessage("This username: "+ username+" is not in server ");
             }
             catch (Exception e){
                 e.getStackTrace();

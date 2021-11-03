@@ -26,9 +26,12 @@ public class OnePunchCommand extends ServerCommand {
                 }
                 System.out.println("Start to one punch the user");
                 String username = args[1];
-                messageBuilderService.sendMessage(event.getMessageAuthor(),"ONE PUNCH "+username,"FOUND YOU!","Its over for you!!"," ", " ",event.getChannel());
-                event.getChannel().sendMessage(new File("C:/Users/Mignon/Pictures/pic5.jpg"));
-
+                if(event.getServer().get().getMembers().stream().anyMatch(user1 -> user1.getName().equals(username))) {
+                    messageBuilderService.sendMessage(event.getMessageAuthor(),"ONE PUNCH "+username,"FOUND YOU!","Its over for you!!"," ", " ",event.getChannel());
+                    event.getChannel().sendMessage(new File("C:/Users/Mignon/Pictures/pic5.jpg"));
+                    return;
+                }
+                event.getChannel().sendMessage("This username:"+ username+" is not in server ");
             }
             catch (Exception e){
                 e.getStackTrace();
