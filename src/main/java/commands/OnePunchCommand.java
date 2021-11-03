@@ -1,14 +1,17 @@
 package commands;
 
-import Service.ServerCommand;
+import service.MessageBuilderService;
+import service.ServerCommand;
 import org.javacord.api.entity.channel.ServerTextChannel;
 import org.javacord.api.entity.server.Server;
 import org.javacord.api.entity.user.User;
 import org.javacord.api.event.message.MessageCreateEvent;
+import java.io.File;
+
 
 public class OnePunchCommand extends ServerCommand {
 
-
+    private final MessageBuilderService messageBuilderService = new MessageBuilderService();
     public OnePunchCommand() {
         super("one-punch");
     }
@@ -21,12 +24,10 @@ public class OnePunchCommand extends ServerCommand {
                 if(!event.getMessageAuthor().isRegularUser()) {
                     event.getChannel().sendMessage("You have no permissions to do that");
                 }
-                //split the Message
+                System.out.println("Start to one punch the user");
                 String username = args[1];
-                User  kickedUser = event.getServer().get().getMembers().stream().filter(user1 -> user1.getName().equals(username)).findFirst().get();
-                event.getServer().get().banUser(kickedUser).join();
-                event.getChannel().sendMessage("One punch:  "+channel.getName());
-
+                messageBuilderService.sendMessage(event.getMessageAuthor(),"ONE PUNCH "+username,"FOUND YOU!","Its over for you!!"," ", " ",event.getChannel());
+                event.getChannel().sendMessage(new File("C:/Users/Mignon/Pictures/pic5.jpg"));
 
             }
             catch (Exception e){

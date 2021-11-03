@@ -1,7 +1,7 @@
-import Service.MessageBuilderService;
+import service.MessageBuilderService;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.player.FunctionalResultHandler;
-import Service.ServerCommand;
+import service.ServerCommand;
 import interfaces.IAudioListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -132,7 +132,7 @@ public class SaitamaAudioListener extends ServerCommand implements IAudioListene
             // This is for track loaded.
             m.scheduler.queue(audioTrack);
             channel.sendMessage("Saitama-bot have added the track: " + audioTrack.getInfo().title);
-            messageBuilderService.sendMessage(messageCreateEvent.getMessageAuthor(),audioTrack.getInfo().title,messageCreateEvent.getMessageAuthor().getMessage().toString(),"'Duration time: "+ (audioTrack.getInfo().length) / 60L, "https://i0.kym-cdn.com/photos/images/original/001/049/085/9ff.png",messageCreateEvent.getChannel());
+            messageBuilderService.sendMessage(messageCreateEvent.getMessageAuthor(),audioTrack.getInfo().title,messageCreateEvent.getMessageAuthor().getMessage().toString(),"'Duration time: "+ (audioTrack.getInfo().length) / 60L, "https://i0.kym-cdn.com/photos/images/original/001/049/085/9ff.png",audioTrack.getInfo().uri,messageCreateEvent.getChannel());
 
         }, audioPlaylist -> {
             // If the playlist is a search result, then we only need to get the first one.
@@ -146,7 +146,7 @@ public class SaitamaAudioListener extends ServerCommand implements IAudioListene
                 // If it isn't then simply queue every track.
                 audioPlaylist.getTracks().forEach(audioTrack -> {
                     m.scheduler.queue(audioTrack);
-                    messageBuilderService.sendMessage(messageCreateEvent.getMessageAuthor(),audioTrack.getInfo().title,messageCreateEvent.getMessageAuthor().getMessage().toString(),"'Duration time: "+ (audioTrack.getInfo().length) / 60L, "https://i0.kym-cdn.com/photos/images/original/001/049/085/9ff.png",messageCreateEvent.getChannel());
+                    messageBuilderService.sendMessage(messageCreateEvent.getMessageAuthor(),audioTrack.getInfo().title,messageCreateEvent.getMessageAuthor().getMessage().toString(),"'Duration time: "+ (audioTrack.getInfo().length) / 60L, "https://i0.kym-cdn.com/photos/images/original/001/049/085/9ff.png", audioTrack.getInfo().uri,messageCreateEvent.getChannel());
                     channel.sendMessage("We have queued the track: " + audioTrack.getInfo().title);
                 });
             }

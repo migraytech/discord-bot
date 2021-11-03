@@ -211,10 +211,7 @@ public class SaitamaBot implements IBot, MessageCreateListener {
                             .setTitle("WOW")
                             .setDescription("ONE PUNCH")
                             .setColor(Color.ORANGE))
-
                     .send(channel)));
-
-
         }
 
         // stop the BOT
@@ -229,7 +226,7 @@ public class SaitamaBot implements IBot, MessageCreateListener {
     /**
      * Message Listener
      *
-     * @param
+     *
      */
     @Override
     public void removeMessage() {
