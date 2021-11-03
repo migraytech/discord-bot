@@ -1,35 +1,20 @@
-import Service.MessageBuilderService;
-
-import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
-import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
-import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
-import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager;
-import com.sedmelluq.discord.lavaplayer.source.youtube.YoutubeAudioSourceManager;
-import com.sedmelluq.discord.lavaplayer.tools.FriendlyException;
-import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist;
-import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
+import commands.*;
 import interfaces.IBot;
-import listener.SaitamaCommandListener;
-import listener.SaitamaModeratorListener;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
-import org.javacord.api.audio.AudioSource;
 import org.javacord.api.entity.channel.ServerTextChannel;
-import org.javacord.api.entity.channel.ServerVoiceChannel;
 import org.javacord.api.entity.channel.TextChannel;
 import org.javacord.api.entity.message.MessageBuilder;
 import org.javacord.api.entity.message.MessageDecoration;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.listener.message.MessageCreateListener;
-import org.javacord.api.util.logging.ExceptionLogger;
 
 import java.awt.*;
 import java.io.File;
-import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -65,7 +50,7 @@ public class SaitamaBot implements IBot, MessageCreateListener {
 
     private static DiscordApi discordApi;
 
-    ///System.getem(DISCORD_TOLEKEN methode
+    ///System.getenv(DISCORD_TOKEN methode
 
     private final String token = System.getenv("DISCORD_TOKEN");
 
@@ -92,8 +77,12 @@ public class SaitamaBot implements IBot, MessageCreateListener {
                 })
                  .addListener(new SaitamaBot())
                  .addListener(new SaitamaAudioListener())
-                 .addListener(new SaitamaModeratorListener())
-                 .addListener(new SaitamaCommandListener())
+                 .addListener(new BanCommand())
+                 .addListener(new CleanCommand())
+                 .addListener(new KickCommand())
+                 .addListener(new MuteCommand())
+                 .addListener(new WatchAnimeCommand())
+                 .addListener(new OnePunchCommand())
                  .setWaitForServersOnStartup(false)
 //                 .setTotalShards(10)
 //                 .loginAllShards()
@@ -157,6 +146,8 @@ public class SaitamaBot implements IBot, MessageCreateListener {
     @Override
     public void onMessageReceived() {
         discordApi.addMessageCreateListener(reactionAddEvent -> {
+
+
             if(reactionAddEvent.getMessageContent().equals("Hi Saitama-bot"))
                 reactionAddEvent.getChannel().sendMessage("Hi! :smiley:  "+reactionAddEvent.getMessage().getUserAuthor().get().getName());
 
@@ -184,12 +175,10 @@ public class SaitamaBot implements IBot, MessageCreateListener {
                                 .append("!mute <@user> ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Mute a member so they cannot type or speak for a limited time").send(channel))).join();
 
                 reactionAddEvent.getChannel().sendMessage(String.valueOf(new MessageBuilder()
-                        .append("!play <@url> ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Add me to VoiceChannel in Chill Friday VoiceChannel and start play music with  the command").send(channel))).join();
+                        .append("!play <@url> ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Add me to VoiceChannel in Chill Friday Voice Channel and start play music with the command").send(channel))).join();
 
                 reactionAddEvent.getChannel().sendMessage(String.valueOf(new MessageBuilder()
                                 .append("!watch-anime <@name> ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Watch anime video from kissanime.ru select the anime-name ").send(channel))).join();
-
-
             }
             //reactionAddEvent.getChannel().typeContinuouslyAfter(5L,TimeUnit.valueOf("MILLISECONDS"));
 
@@ -222,10 +211,7 @@ public class SaitamaBot implements IBot, MessageCreateListener {
                             .setTitle("WOW")
                             .setDescription("ONE PUNCH")
                             .setColor(Color.ORANGE))
-
                     .send(channel)));
-
-
         }
 
         // stop the BOT
@@ -240,7 +226,7 @@ public class SaitamaBot implements IBot, MessageCreateListener {
     /**
      * Message Listener
      *
-     * @param
+     *
      */
     @Override
     public void removeMessage() {

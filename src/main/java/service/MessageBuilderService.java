@@ -1,4 +1,4 @@
-package Service;
+package service;
 
 import interfaces.IMessageBuilderService;
 import org.javacord.api.entity.channel.TextChannel;
@@ -14,10 +14,11 @@ public class MessageBuilderService implements IMessageBuilderService {
      * @param title,description,footer
      */
     @Override
-    public void sendMessage(MessageAuthor messageAuthor, String title, String description, String footer, String thumbnail, TextChannel textChannel) {
+    public void sendMessage(MessageAuthor messageAuthor, String title, String description, String footer, String thumbnail,String url ,TextChannel textChannel) {
         new MessageBuilder().setEmbed(new EmbedBuilder()
                 .setAuthor(messageAuthor)
                 .setTitle(title)
+                .setUrl(url)
                 .setFooter(footer)
                 .setThumbnail(thumbnail))
                 .send(textChannel);

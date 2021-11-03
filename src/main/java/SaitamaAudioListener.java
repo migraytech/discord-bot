@@ -1,9 +1,8 @@
-import Service.MessageBuilderService;
+import service.MessageBuilderService;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.player.FunctionalResultHandler;
-import commands.ServerCommand;
+import service.ServerCommand;
 import interfaces.IAudioListener;
-import listener.SaitamaCommandListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.javacord.api.audio.AudioSource;
@@ -27,7 +26,7 @@ public class SaitamaAudioListener extends ServerCommand implements IAudioListene
 
     private final MessageBuilderService messageBuilderService = new MessageBuilderService();
 
-    private static final Logger logger = LogManager.getLogger(SaitamaCommandListener.class);
+    private static final Logger logger = LogManager.getLogger(SaitamaAudioListener.class);
 
 
     private final static Pattern pattern = Pattern.compile("!play (https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]");
@@ -69,7 +68,7 @@ public class SaitamaAudioListener extends ServerCommand implements IAudioListene
                             System.out.println("START SETTING UP THE SOURCE AND SERVER MANAGER");
                             ServerMusicManager m = AudioManager.get(messageCreateEvent.getServer().get().getId());
                             AudioSource source = new LavaPlayerAudioSource(messageCreateEvent.getApi(), m.player);
-                            ServerVoiceChannel serverVoiceChannel = messageCreateEvent.getApi().getServerVoiceChannelById(902531652578856974L).get();
+                            ServerVoiceChannel serverVoiceChannel = messageCreateEvent.getApi().getServerVoiceChannelById(835207222753493042L).get();
 
                             if (!serverVoiceChannel.isConnected(messageCreateEvent.getApi().getYourself()) && !messageCreateEvent.getServer().get().getAudioConnection().isPresent()) {
 
@@ -133,7 +132,7 @@ public class SaitamaAudioListener extends ServerCommand implements IAudioListene
             // This is for track loaded.
             m.scheduler.queue(audioTrack);
             channel.sendMessage("Saitama-bot have added the track: " + audioTrack.getInfo().title);
-            messageBuilderService.sendMessage(messageCreateEvent.getMessageAuthor(),audioTrack.getInfo().title,messageCreateEvent.getMessageAuthor().getMessage().toString(),"'Duration time: "+ (audioTrack.getInfo().length) / 60L, "https://i0.kym-cdn.com/photos/images/original/001/049/085/9ff.png",messageCreateEvent.getChannel());
+            messageBuilderService.sendMessage(messageCreateEvent.getMessageAuthor(),audioTrack.getInfo().title,messageCreateEvent.getMessageAuthor().getMessage().toString(),"'Duration time: "+ (audioTrack.getInfo().length) / 60L, "https://i0.kym-cdn.com/photos/images/original/001/049/085/9ff.png",audioTrack.getInfo().uri,messageCreateEvent.getChannel());
 
         }, audioPlaylist -> {
             // If the playlist is a search result, then we only need to get the first one.
@@ -147,7 +146,7 @@ public class SaitamaAudioListener extends ServerCommand implements IAudioListene
                 // If it isn't then simply queue every track.
                 audioPlaylist.getTracks().forEach(audioTrack -> {
                     m.scheduler.queue(audioTrack);
-                    messageBuilderService.sendMessage(messageCreateEvent.getMessageAuthor(),audioTrack.getInfo().title,messageCreateEvent.getMessageAuthor().getMessage().toString(),"'Duration time: "+ (audioTrack.getInfo().length) / 60L, "https://i0.kym-cdn.com/photos/images/original/001/049/085/9ff.png",messageCreateEvent.getChannel());
+                    messageBuilderService.sendMessage(messageCreateEvent.getMessageAuthor(),audioTrack.getInfo().title,messageCreateEvent.getMessageAuthor().getMessage().toString(),"'Duration time: "+ (audioTrack.getInfo().length) / 60L, "https://i0.kym-cdn.com/photos/images/original/001/049/085/9ff.png", audioTrack.getInfo().uri,messageCreateEvent.getChannel());
                     channel.sendMessage("We have queued the track: " + audioTrack.getInfo().title);
                 });
             }

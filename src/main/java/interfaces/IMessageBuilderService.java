@@ -8,5 +8,5 @@ import org.javacord.api.listener.message.MessageCreateListener;
 
 public interface IMessageBuilderService {
 
-    void sendMessage(MessageAuthor messageAuthor, String title, String description, String footer, String thumbnail, TextChannel textChannel);
+    void sendMessage(MessageAuthor messageAuthor, String title, String description, String footer, String thumbnail,String url ,TextChannel textChannel);
 }
