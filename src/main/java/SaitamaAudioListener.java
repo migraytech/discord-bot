@@ -68,7 +68,7 @@ public class SaitamaAudioListener extends ServerCommand implements IAudioListene
                             System.out.println("START SETTING UP THE SOURCE AND SERVER MANAGER");
                             ServerMusicManager m = AudioManager.get(messageCreateEvent.getServer().get().getId());
                             AudioSource source = new LavaPlayerAudioSource(messageCreateEvent.getApi(), m.player);
-                            ServerVoiceChannel serverVoiceChannel = messageCreateEvent.getApi().getServerVoiceChannelById(902531652578856974L).get();
+                            ServerVoiceChannel serverVoiceChannel = messageCreateEvent.getApi().getServerVoiceChannelById(835207222753493042L).get();
 
                             if (!serverVoiceChannel.isConnected(messageCreateEvent.getApi().getYourself()) && !messageCreateEvent.getServer().get().getAudioConnection().isPresent()) {
 
