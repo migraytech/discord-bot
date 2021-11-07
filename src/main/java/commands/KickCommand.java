@@ -1,5 +1,6 @@
 package commands;
 
+import service.MessageBuilderService;
 import service.ServerCommand;
 import org.javacord.api.entity.channel.ServerTextChannel;
 import org.javacord.api.entity.server.Server;
@@ -8,7 +9,7 @@ import org.javacord.api.event.message.MessageCreateEvent;
 
 public class KickCommand extends ServerCommand {
 
-
+    private final MessageBuilderService messageBuilderService = new MessageBuilderService();
     public KickCommand( ) {
         super("kick");
 
@@ -27,9 +28,15 @@ public class KickCommand extends ServerCommand {
                     }
                     //split the Message
                     String username = args[1];
-                    User  kickedUser = event.getServer().get().getMembers().stream().filter(user1 -> user1.getName().equals(username)).findFirst().get();
-                    event.getServer().get().kickUser(kickedUser);
-                    event.getChannel().sendMessage("Kick:  "+ username);
+                    if(event.getServer().get().getMembers().stream().anyMatch(user1 -> user1.getName().equals(username))) {
+                        User kickedUser = event.getServer().get().getMembers().stream().filter(user1 -> user1.getName().equals(username)).findFirst().get();
+                        messageBuilderService.sendMessage(event.getMessageAuthor(),"Kicker "+username," "," "," ", " ",event.getChannel());
+                        event.getServer().get().kickUser(kickedUser);
+                        event.getChannel().sendMessage("Kick:  " + username);
+                        return;
+                    }
+
+                    event.getChannel().sendMessage("This username:"+ username+" is not in server ");
 
                 }
 

@@ -3,9 +3,10 @@ import java.util.Map;
 
 public class AudioManager {
 
-    /*
-     * A custom class used to store
-     * all the GuildMusicManagers to unify them all.
+    /**
+     * Retrieves the server music manager dedicated for the server.
+     *
+     * @return a ServerMusicManager.
      */
 
     private static final Map<Long, ServerMusicManager> managers = new HashMap<>();
