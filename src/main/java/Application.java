@@ -1,3 +1,5 @@
+import org.javacord.api.entity.message.MessageFlag;
+import org.javacord.api.interaction.SlashCommandInteraction;
 import org.javacord.api.util.logging.FallbackLoggerConfiguration;
 
 

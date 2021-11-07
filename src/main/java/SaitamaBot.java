@@ -9,8 +9,10 @@ import org.javacord.api.entity.channel.ServerTextChannel;
 import org.javacord.api.entity.channel.TextChannel;
 import org.javacord.api.entity.message.MessageBuilder;
 import org.javacord.api.entity.message.MessageDecoration;
+import org.javacord.api.entity.message.MessageFlag;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.event.message.MessageCreateEvent;
+import org.javacord.api.interaction.SlashCommandInteraction;
 import org.javacord.api.listener.message.MessageCreateListener;
 
 import java.awt.*;
@@ -121,7 +123,15 @@ public class SaitamaBot implements IBot, MessageCreateListener {
         System.out.println("You can invite the bot by using the following url:" + discordApi.createBotInvite());
         logger.trace( "Start the SaitamaBot... ");
         System.out.println("Start the SaitamaBot..");
-
+        discordApi.addSlashCommandCreateListener(event -> {
+            SlashCommandInteraction slashCommandInteraction = event.getSlashCommandInteraction();
+            if (slashCommandInteraction.getCommandName().equals("ping")) {
+                slashCommandInteraction.createImmediateResponder()
+                        .setContent("Pong!")
+                        .setFlags(MessageFlag.EPHEMERAL) // Only visible for the user which invoked the command
+                        .respond();
+            }
+        });
     }
 
     /**
@@ -183,6 +193,8 @@ public class SaitamaBot implements IBot, MessageCreateListener {
             //reactionAddEvent.getChannel().typeContinuouslyAfter(5L,TimeUnit.valueOf("MILLISECONDS"));
 
         });
+
+
     }
 
 
