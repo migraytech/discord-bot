@@ -14,6 +14,7 @@ import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.event.message.MessageCreateEvent;
 import org.javacord.api.interaction.SlashCommandInteraction;
 import org.javacord.api.listener.message.MessageCreateListener;
+import org.javacord.api.util.logging.ExceptionLogger;
 
 import java.awt.*;
 import java.io.File;
@@ -104,13 +105,13 @@ public class SaitamaBot implements IBot, MessageCreateListener {
          logger.trace("Setup the bot... ");
     }
 
-//    private static void onShardLogin(DiscordApi api) {
-//        System.out.println("Shard " + api.getCurrentShard() + " logged in!");
-//        // You can treat the shard like a normal bot account, e.g. registering listeners
-//        api.addMessageCreateListener(event -> {
-//            // ...
-//        });
-//    }
+    private static void onShardLogin(DiscordApi api) {
+        System.out.println("Shard " + api.getCurrentShard() + " logged in!");
+        // You can treat the shard like a normal bot account, e.g. registering listeners
+        api.addMessageCreateListener(event -> {
+            // ...
+        });
+    }
 
 
     /**
@@ -209,10 +210,10 @@ public class SaitamaBot implements IBot, MessageCreateListener {
         serverTextChannel = messageCreateEvent.getServerTextChannel().get();
         channel = messageCreateEvent.getChannel();
         if (messageCreateEvent.getMessageContent().equalsIgnoreCase("!ping") || messageCreateEvent.getMessageContent().equals("!info"))  {
-            messageCreateEvent.getChannel().sendMessage("HI!" + messageCreateEvent.getMessage().getUserAuthor().get().getName());
-            channel.sendMessage("Hi Guys  "+"@"+ serverTextChannel.getServer().getName() +"  " +  "Dont forget to subscribe on my friends Youtube Channel Migray-Tech!!");
+            messageCreateEvent.getChannel().sendMessage("HI!" + messageCreateEvent.getMessage().getUserAuthor().get().getName()).join();
+            channel.sendMessage("Hi Guys  "+"@"+ serverTextChannel.getServer().getName() +"  " +  "Dont forget to subscribe on my friends Youtube Channel Migray-Tech!!").join();
             channel.sendMessage("Free to ask what kinda anime or programming tutorials you wanna watch!").join();
-            channel.sendMessage("To see all commands, please type '!commands' or '!help'");
+            channel.sendMessage("To see all commands, please type '!commands' or '!help'").join();
             channel.sendMessage(String.valueOf(new MessageBuilder()
                     .append("Look at these ")
                     .append("awesome", MessageDecoration.BOLD, MessageDecoration.UNDERLINE)
@@ -223,7 +224,7 @@ public class SaitamaBot implements IBot, MessageCreateListener {
                             .setTitle("WOW")
                             .setDescription("ONE PUNCH")
                             .setColor(Color.ORANGE))
-                    .send(channel)));
+                    .send(channel))).join();
         }
 
         // stop the BOT
