@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="3f80e193-3ea2-4aa3-a5df-8a16a2242838" name="Default Changelist" comment="Create new interfaces for the listeners classes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SaitamaBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SaitamaBot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/commands/MuteCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/commands/MuteCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/commands/WatchAnimeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/commands/WatchAnimeCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,9 +151,6 @@
       <workItem from="1636272911949" duration="3283000" />
       <workItem from="1636374315383" duration="576000" />
       <workItem from="1636374947021" duration="2680000" />
-      <workItem from="1636451744386" duration="595000" />
-      <workItem from="1636537315211" duration="1791000" />
-      <workItem from="1636659646327" duration="606000" />
     </task>
     <task id="LOCAL-00001" summary="CAdded">
       <created>1634896856274</created>
