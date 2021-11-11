@@ -31,7 +31,7 @@ public class MuteCommand extends ServerCommand {
                 if(event.getServer().get().getMembers().stream().anyMatch(user1 -> user1.getName().equals(username))) {
                     User muteUser = event.getServer().get().getMembers().stream().filter(user1 -> user1.getName().equals(username)).findFirst().get();
                     event.getServer().get().muteUser(muteUser);
-                    messageBuilderService.sendMessage(event.getMessageAuthor(),"","","","","",event.getChannel());
+                    messageBuilderService.sendMessage(event.getMessageAuthor(),"Mute this user","","","","",event.getChannel());
                     event.getChannel().sendMessage(new File("C:/Users/Mignon/Pictures/pic1.jpg"));
                     return;
                 }

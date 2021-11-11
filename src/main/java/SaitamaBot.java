@@ -9,9 +9,12 @@ import org.javacord.api.entity.channel.ServerTextChannel;
 import org.javacord.api.entity.channel.TextChannel;
 import org.javacord.api.entity.message.MessageBuilder;
 import org.javacord.api.entity.message.MessageDecoration;
+import org.javacord.api.entity.message.MessageFlag;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.event.message.MessageCreateEvent;
+import org.javacord.api.interaction.SlashCommandInteraction;
 import org.javacord.api.listener.message.MessageCreateListener;
+import org.javacord.api.util.logging.ExceptionLogger;
 
 import java.awt.*;
 import java.io.File;
@@ -102,13 +105,13 @@ public class SaitamaBot implements IBot, MessageCreateListener {
          logger.trace("Setup the bot... ");
     }
 
-//    private static void onShardLogin(DiscordApi api) {
-//        System.out.println("Shard " + api.getCurrentShard() + " logged in!");
-//        // You can treat the shard like a normal bot account, e.g. registering listeners
-//        api.addMessageCreateListener(event -> {
-//            // ...
-//        });
-//    }
+    private static void onShardLogin(DiscordApi api) {
+        System.out.println("Shard " + api.getCurrentShard() + " logged in!");
+        // You can treat the shard like a normal bot account, e.g. registering listeners
+        api.addMessageCreateListener(event -> {
+            // ...
+        });
+    }
 
 
     /**
@@ -121,7 +124,15 @@ public class SaitamaBot implements IBot, MessageCreateListener {
         System.out.println("You can invite the bot by using the following url:" + discordApi.createBotInvite());
         logger.trace( "Start the SaitamaBot... ");
         System.out.println("Start the SaitamaBot..");
-
+        discordApi.addSlashCommandCreateListener(event -> {
+            SlashCommandInteraction slashCommandInteraction = event.getSlashCommandInteraction();
+            if (slashCommandInteraction.getCommandName().equals("ping")) {
+                slashCommandInteraction.createImmediateResponder()
+                        .setContent("Pong!")
+                        .setFlags(MessageFlag.EPHEMERAL) // Only visible for the user which invoked the command
+                        .respond();
+            }
+        });
     }
 
     /**
@@ -183,6 +194,8 @@ public class SaitamaBot implements IBot, MessageCreateListener {
             //reactionAddEvent.getChannel().typeContinuouslyAfter(5L,TimeUnit.valueOf("MILLISECONDS"));
 
         });
+
+
     }
 
 
@@ -197,10 +210,10 @@ public class SaitamaBot implements IBot, MessageCreateListener {
         serverTextChannel = messageCreateEvent.getServerTextChannel().get();
         channel = messageCreateEvent.getChannel();
         if (messageCreateEvent.getMessageContent().equalsIgnoreCase("!ping") || messageCreateEvent.getMessageContent().equals("!info"))  {
-            messageCreateEvent.getChannel().sendMessage("HI!" + messageCreateEvent.getMessage().getUserAuthor().get().getName());
-            channel.sendMessage("Hi Guys  "+"@"+ serverTextChannel.getServer().getName() +"  " +  "Dont forget to subscribe on my friends Youtube Channel Migray-Tech!!");
+            messageCreateEvent.getChannel().sendMessage("HI!" + messageCreateEvent.getMessage().getUserAuthor().get().getName()).join();
+            channel.sendMessage("Hi Guys  "+"@"+ serverTextChannel.getServer().getName() +"  " +  "Dont forget to subscribe on my friends Youtube Channel Migray-Tech!!").join();
             channel.sendMessage("Free to ask what kinda anime or programming tutorials you wanna watch!").join();
-            channel.sendMessage("To see all commands, please type '!commands' or '!help'");
+            channel.sendMessage("To see all commands, please type '!commands' or '!help'").join();
             channel.sendMessage(String.valueOf(new MessageBuilder()
                     .append("Look at these ")
                     .append("awesome", MessageDecoration.BOLD, MessageDecoration.UNDERLINE)
@@ -211,7 +224,7 @@ public class SaitamaBot implements IBot, MessageCreateListener {
                             .setTitle("WOW")
                             .setDescription("ONE PUNCH")
                             .setColor(Color.ORANGE))
-                    .send(channel)));
+                    .send(channel))).join();
         }
 
         // stop the BOT
