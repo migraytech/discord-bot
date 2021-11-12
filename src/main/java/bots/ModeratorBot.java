@@ -17,6 +17,8 @@ import service.MessageBuilderService;
 
 import java.awt.*;
 import java.io.File;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 public class ModeratorBot extends ModeratorBase implements IBot{
 
@@ -36,14 +38,7 @@ public class ModeratorBot extends ModeratorBase implements IBot{
                 .addServerBecomesAvailableListener(event -> {
                     System.out.println("Loaded " + event.getServer().getName());
                 })
-                .addListener(new SaitamaBot())
-                .addListener(new SaitamaAudioListener())
-                .addListener(new BanCommand())
-                .addListener(new CleanCommand())
-                .addListener(new KickCommand())
-                .addListener(new MuteCommand())
-                .addListener(new WatchAnimeCommand())
-                .addListener(new OnePunchCommand())
+                .addListener(new ModeratorBot())
                 .setWaitForServersOnStartup(false)
                 .login()
                 .join();
@@ -107,46 +102,80 @@ public class ModeratorBot extends ModeratorBase implements IBot{
 
     @Override
     public void removeMessage() {
-
+        discordApi.addReactionAddListener(event -> {
+            if (event.getEmoji().equalsEmoji("👎")) {
+                event.getChannel();
+                event.deleteMessage();
+            }
+        }).removeAfter(30, TimeUnit.MINUTES);
 
     }
 
     @Override
-    protected void checkMessage(MessageCreateEvent event, Server server, ServerTextChannel channel, User user, String[] args) {
+    protected void checkMessage(MessageCreateEvent event, Server server, ServerTextChannel channel, User user, String[] args) throws Throwable {
+        try
+        {
+            for (String x: moderatorsWords) {
+                if(args[0].contains(x)){
+                    System.out.println("CHECKED");
 
-        for (String x: moderatorsWords) {
-            if(event.getMessage().toString().toLowerCase().contains(x)){
-                isBadWord = true;
+                    isBadWord = true;
+                    int limit = 3;
+                    if (violationCounter.containsKey(user))
+                    {
+                        if (violationCounter.get(user).equals(limit))
+                        {
+                            logger.info("User violated the rules");
+                            System.out.println("the User: "+user + "violated the rules");
+                            sendMessageToUser(event,user, limit);
+                            event.getChannel().sendMessage("Your are being asshole!").join();
+                            event.getServer().get().kickUser(user);
+                            event.getChannel().sendMessage(user.getName()+"has been kicked from the server");
+                            break;
+                        }
+                        else
+                        {
+                            logger.info("Test");
+                            System.out.println("Insert a value for the User " + user);
+                            int count = violationCounter.get(user);
+                            violationCounter.replace(user, count, count + 1);
+                            count = violationCounter.get(user);
+                            System.out.println("New value has been updated" + "the count is on " + count);
+                            sendMessageToUser(event, user, count);
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        logger.info("Insert a new User");
+                        System.out.println("Insert a new User");
+                        violationCounter.put(user,1);
+                        sendMessageToUser(event, user,violationCounter.get(user));
+                        break;
+                    }
 
-                //check if user in the volationlist
-                  //true    get gounter pluss old value
-                // fals    create new with the methode put
-
-
-
-
-
-                sendMessageToUser(event, user);
-                break;
+                }
+                isBadWord = false;
             }
+
+            if(isBadWord){
+                event.getMessage().delete();
+                event.getChannel().sendMessage("Message had been deleted by Moderator Bot").join();
+            }
+
+        }
+        catch (Exception e){
+            throw e.getCause();
         }
 
+
     }
 
     @Override
-    public void sendMessageToUser(MessageCreateEvent event,User user) {
+    public void sendMessageToUser(MessageCreateEvent event,User user,int count) {
            //Warning message , get the violationCounter from list to so the issue
           //messageBuilderService.sendMessage(null,"","","","","",null);
-           event.getChannel().sendMessage(""+user);
+           event.getChannel().sendMessage("Count: "+count+"from the"+"User "+user.getName()).join();
     }
-
-
-    //checkInList
-    //count
-
-
-
-
-
 
 }

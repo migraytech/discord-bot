@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3f80e193-3ea2-4aa3-a5df-8a16a2242838" name="Default Changelist" comment="some changes in the logic">
+    <list default="true" id="3f80e193-3ea2-4aa3-a5df-8a16a2242838" name="Default Changelist" comment="Created and added new value in the methodes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/bots/ModeratorBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bots/ModeratorBot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bots/PlayerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bots/helpers/PlayerManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bots/SaitamaBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bots/SaitamaBot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bots/helpers/AudioManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bots/helpers/AudioManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bots/listeners/SaitamaAudioListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bots/listeners/SaitamaAudioListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/models/ModeratorBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/ModeratorBase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/server/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Application.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +87,7 @@
   <component name="RunManager">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <envs>
-        <env name="DISCORD_TOKEN" value="OTAxMDEwMjAzMDYxOTQwMjM1.YXJpJA.JmrMGAQHve2Hob6_FaLLhJ4oqz4" />
+        <env name="DISCORD_TOKEN" value="OTAxMDEwMjAzMDYxOTQwMjM1.YXJpJA.YnnlkU7vMLxWFhCyAehBoI46b48" />
       </envs>
       <option name="MAIN_CLASS_NAME" value="server.Application" />
       <module name="discord-bot" />
@@ -157,7 +154,7 @@
       <workItem from="1636272911949" duration="3283000" />
       <workItem from="1636374315383" duration="576000" />
       <workItem from="1636374947021" duration="2680000" />
-      <workItem from="1636708459929" duration="6270000" />
+      <workItem from="1636708459929" duration="9525000" />
     </task>
     <task id="LOCAL-00001" summary="CAdded">
       <created>1634896856274</created>
@@ -180,7 +177,14 @@
       <option name="project" value="LOCAL" />
       <updated>1636663736117</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Created and added new value in the methodes">
+      <created>1636714871918</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1636714871918</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -214,6 +218,23 @@
     <MESSAGE value="CAdded" />
     <MESSAGE value="Create new interfaces for the listeners classes" />
     <MESSAGE value="some changes in the logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="some changes in the logic" />
+    <MESSAGE value="Created and added new value in the methodes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created and added new value in the methodes" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/bots/ModeratorBot.java</url>
+          <line>121</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/bots/ModeratorBot.java</url>
+          <line>117</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

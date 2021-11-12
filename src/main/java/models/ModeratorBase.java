@@ -16,7 +16,7 @@ public abstract class ModeratorBase implements MessageCreateListener {
 
     //List bad words
 
-    static protected  final ArrayList<String> moderatorsWords =  new ArrayList(Arrays.asList("bad","fuck"));
+    static protected  final List <String> moderatorsWords =  new ArrayList <> (Arrays.asList("bad","fuck","nigger","gay"));
 
     //list count User
     static protected final HashMap<User,Integer> violationCounter = new HashMap<>();
@@ -34,14 +34,20 @@ public abstract class ModeratorBase implements MessageCreateListener {
 
         // Runs everything.
         messageCreateEvent.getServer().ifPresent(server -> messageCreateEvent.getMessageAuthor().asUser().ifPresent(user ->
-                messageCreateEvent.getServerTextChannel().ifPresent(serverTextChannel -> checkMessage(messageCreateEvent, server, serverTextChannel, user, messageCreateEvent.getMessageContent().split(" ")))));
+                messageCreateEvent.getServerTextChannel().ifPresent(serverTextChannel -> {
+                    try {
+                        checkMessage(messageCreateEvent, server, serverTextChannel, user, messageCreateEvent.getMessageContent().split(" "));
+                    } catch (Throwable throwable) {
+                        throwable.printStackTrace();
+                    }
+                })));
 
     }
 
 
-    protected abstract void checkMessage(MessageCreateEvent event, Server server, ServerTextChannel channel, User user, String[] args);
+    protected abstract void checkMessage(MessageCreateEvent event, Server server, ServerTextChannel channel, User user, String[] args) throws Throwable;
 
-    public abstract void sendMessageToUser(MessageCreateEvent event,User user);
+    public abstract void sendMessageToUser(MessageCreateEvent event,User user,int count);
 
 
 }
