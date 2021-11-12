@@ -1,8 +1,7 @@
-package commands;
+package bots.listeners.commands;
 
-import org.javacord.api.Javacord;
 import service.MessageBuilderService;
-import service.ServerCommand;
+import models.ServerCommand;
 import org.javacord.api.entity.channel.ServerTextChannel;
 import org.javacord.api.entity.server.Server;
 import org.javacord.api.entity.user.User;

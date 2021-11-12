@@ -1,4 +1,4 @@
-package service;
+package models;
 
 import org.javacord.api.entity.channel.ServerTextChannel;
 import org.javacord.api.entity.server.Server;

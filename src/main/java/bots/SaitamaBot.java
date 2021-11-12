@@ -1,4 +1,7 @@
-import commands.*;
+package bots;
+
+import bots.listeners.SaitamaAudioListener;
+import bots.listeners.commands.*;
 import interfaces.IBot;
 
 import org.apache.logging.log4j.LogManager;
@@ -9,12 +12,9 @@ import org.javacord.api.entity.channel.ServerTextChannel;
 import org.javacord.api.entity.channel.TextChannel;
 import org.javacord.api.entity.message.MessageBuilder;
 import org.javacord.api.entity.message.MessageDecoration;
-import org.javacord.api.entity.message.MessageFlag;
 import org.javacord.api.entity.message.embed.EmbedBuilder;
 import org.javacord.api.event.message.MessageCreateEvent;
-import org.javacord.api.interaction.SlashCommandInteraction;
 import org.javacord.api.listener.message.MessageCreateListener;
-import org.javacord.api.util.logging.ExceptionLogger;
 
 import java.awt.*;
 import java.io.File;
@@ -28,51 +28,25 @@ import java.util.concurrent.TimeUnit;
 
 public class SaitamaBot implements IBot, MessageCreateListener {
 
-    /**
-     * Message Listener
-     *
-     * @param event
-     */
+
     private final String version = "1.0";
     private static final Logger logger = LogManager.getLogger(SaitamaBot.class);
     private final double id = 0.1;
-
-    ///TODO
-
-    //CLASSES that are checking and are responsible
-
-    //commands
-
-    //music
-
-    //monitoring
-
 
     private static  TextChannel channel= null;
     private static ServerTextChannel serverTextChannel = null;
 
     private static DiscordApi discordApi;
-
-    ///System.getenv(DISCORD_TOKEN methode
-
-    private final String token = System.getenv("DISCORD_TOKEN");
+    protected final String token = System.getenv("DISCORD_TOKEN");
 
     public SaitamaBot() {
     }
-
-    /**
-     * Message Listener
-     *
-     * @param
-     */
 
      @Override
     public void setup() {
 
          PlayerManager.init();
-         logger.trace("Create Saitamabot:  "+id+"  "+version);
-
-
+         logger.trace("Create bots.SaitamaBot:  "+id+"  "+version);
          discordApi = new DiscordApiBuilder()
                 .setToken(token)
                 .addServerBecomesAvailableListener(event -> {
@@ -90,7 +64,7 @@ public class SaitamaBot implements IBot, MessageCreateListener {
 //                 .setTotalShards(10)
 //                 .loginAllShards()
 //                 .forEach(shardFuture -> shardFuture
-//                         .thenAcceptAsync(SaitamaBot::onShardLogin)
+//                         .thenAcceptAsync(bots.SaitamaBot::onShardLogin)
 //                         .exceptionally(ExceptionLogger.get())
 //                 )
 
@@ -122,17 +96,8 @@ public class SaitamaBot implements IBot, MessageCreateListener {
     @Override
     public void start() {
         System.out.println("You can invite the bot by using the following url:" + discordApi.createBotInvite());
-        logger.trace( "Start the SaitamaBot... ");
-        System.out.println("Start the SaitamaBot..");
-        discordApi.addSlashCommandCreateListener(event -> {
-            SlashCommandInteraction slashCommandInteraction = event.getSlashCommandInteraction();
-            if (slashCommandInteraction.getCommandName().equals("ping")) {
-                slashCommandInteraction.createImmediateResponder()
-                        .setContent("Pong!")
-                        .setFlags(MessageFlag.EPHEMERAL) // Only visible for the user which invoked the command
-                        .respond();
-            }
-        });
+        logger.trace( "Start the bots.SaitamaBot... ");
+        System.out.println("Start the bots.SaitamaBot..");
     }
 
     /**
@@ -142,7 +107,7 @@ public class SaitamaBot implements IBot, MessageCreateListener {
      */
     @Override
     public void disconnect() {
-        logger.info("Disconnect the SaitamaBot... ");
+        logger.info("Disconnect the bots.SaitamaBot... ");
         discordApi.disconnect();
         System.exit(3);
     }
@@ -162,16 +127,16 @@ public class SaitamaBot implements IBot, MessageCreateListener {
             if(reactionAddEvent.getMessageContent().equals("Hi Saitama-bot"))
                 reactionAddEvent.getChannel().sendMessage("Hi! :smiley:  "+reactionAddEvent.getMessage().getUserAuthor().get().getName());
 
-            if(reactionAddEvent.getMessageContent().equals("!commands") || reactionAddEvent.getMessageContent().equals("!help")) {
+            if(reactionAddEvent.getMessageContent().equals("!bots.listeners.commands") || reactionAddEvent.getMessageContent().equals("!help")) {
 
                 reactionAddEvent.getChannel().sendMessage("HI! " + reactionAddEvent.getMessage().getUserAuthor().get().getName()).join();
-                reactionAddEvent.getChannel().sendMessage("Here are some commands that I understand:").join();
+                reactionAddEvent.getChannel().sendMessage("Here are some bots.listeners.commands that I understand:").join();
 
                 reactionAddEvent.getChannel().sendMessage(String.valueOf(new MessageBuilder()
                                 .append("!clean ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Remove all messages from the Text Channel").send(channel))).join();
 
                 reactionAddEvent.getChannel().sendMessage(String.valueOf(new MessageBuilder()
-                        .append("!disconnect ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Stop the SaitamaBot").send(channel))).join();
+                        .append("!disconnect ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Stop the bots.SaitamaBot").send(channel))).join();
 
                 reactionAddEvent.getChannel().sendMessage(String.valueOf(new MessageBuilder()
                                 .append("!one-punch  <@user>",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("One punch a User form the server for Softban a member").send(channel))).join();
@@ -191,7 +156,8 @@ public class SaitamaBot implements IBot, MessageCreateListener {
                 reactionAddEvent.getChannel().sendMessage(String.valueOf(new MessageBuilder()
                                 .append("!watch-anime <@name> ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Watch anime video from kissanime.ru select the anime-name ").send(channel))).join();
             }
-            //reactionAddEvent.getChannel().typeContinuouslyAfter(5L,TimeUnit.valueOf("MILLISECONDS"));
+
+            reactionAddEvent.getChannel().typeContinuouslyAfter(5L,TimeUnit.valueOf("MILLISECONDS"));
 
         });
 
@@ -213,7 +179,7 @@ public class SaitamaBot implements IBot, MessageCreateListener {
             messageCreateEvent.getChannel().sendMessage("HI!" + messageCreateEvent.getMessage().getUserAuthor().get().getName()).join();
             channel.sendMessage("Hi Guys  "+"@"+ serverTextChannel.getServer().getName() +"  " +  "Dont forget to subscribe on my friends Youtube Channel Migray-Tech!!").join();
             channel.sendMessage("Free to ask what kinda anime or programming tutorials you wanna watch!").join();
-            channel.sendMessage("To see all commands, please type '!commands' or '!help'").join();
+            channel.sendMessage("To see all bots.listeners.commands, please type '!bots.listeners.commands' or '!help'").join();
             channel.sendMessage(String.valueOf(new MessageBuilder()
                     .append("Look at these ")
                     .append("awesome", MessageDecoration.BOLD, MessageDecoration.UNDERLINE)

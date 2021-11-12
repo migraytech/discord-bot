@@ -1,8 +1,12 @@
 package interfaces;
 
 
-public interface IModerator {
+import org.javacord.api.event.message.MessageCreateEvent;
+import org.javacord.api.listener.message.MessageCreateListener;
 
-    void checkModerator ();
+public interface IModerator  {
+
+    void checkModerator (MessageCreateEvent event);
+
 
 }
