@@ -1,6 +1,6 @@
 package bots.listeners;
 
-import bots.PlayerManager;
+import bots.helpers.PlayerManager;
 import bots.helpers.AudioManager;
 import bots.helpers.LavaPlayerAudioSource;
 import bots.helpers.ServerMusicManager;

@@ -1,4 +1,4 @@
-package bots;
+package bots.helpers;
 
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager;
@@ -10,7 +10,7 @@ public class PlayerManager {
     // as a single one can handle everything.
 
 
-    // **IMPORTANT: PLEASE INITIALIZE THE PLAYERMANAGER ON YOUR MAIN CLASS BY CALLING bots.PlayerManager.init()**
+    // **IMPORTANT: PLEASE INITIALIZE THE PLAYERMANAGER ON YOUR MAIN CLASS BY CALLING bots.helpers.PlayerManager.init()**
 
     private static final AudioPlayerManager manager = new DefaultAudioPlayerManager();
 
