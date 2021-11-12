@@ -1,7 +1,13 @@
+package bots.listeners;
+
+import bots.PlayerManager;
+import bots.helpers.AudioManager;
+import bots.helpers.LavaPlayerAudioSource;
+import bots.helpers.ServerMusicManager;
 import service.MessageBuilderService;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.player.FunctionalResultHandler;
-import service.ServerCommand;
+import models.ServerCommand;
 import interfaces.IAudioListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -75,7 +81,7 @@ public class SaitamaAudioListener extends ServerCommand implements IAudioListene
                                 System.out.println("JOIN THE BOT IN THE VOICE CHANNEL");
                                 serverVoiceChannel.connect().thenAccept(audioConnection -> {
                                     System.out.println("START");
-                                    // Create an audio source and add to audio connection queue, this is where we use the ServerMusicManager as well.
+                                    // Create an audio source and add to audio connection queue, this is where we use the bots.helpers.ServerMusicManager as well.
                                     audioConnection.setAudioSource(source);
                                     audioConnection.setSelfDeafened(true); // This is optional, but I prefer to have my bot deafen itself.
                                     // Plays the music.
@@ -87,7 +93,7 @@ public class SaitamaAudioListener extends ServerCommand implements IAudioListene
                                 messageCreateEvent.getServer().flatMap(Server::getAudioConnection).ifPresent(audioConnection -> {
                                     // Checks if the user is in the same channel as the bot.
                                     if (audioConnection.getChannel().getId() == serverVoiceChannel.getId()) {
-                                        // Create an audio source and add to audio connection queue, this is where we use the ServerMusicManager as well.
+                                        // Create an audio source and add to audio connection queue, this is where we use the bots.helpers.ServerMusicManager as well.
                                         audioConnection.setAudioSource(source);
                                         audioConnection.setSelfDeafened(true); // This is optional, but I prefer to have my bot deafen itself.
                                         // Plays the music.
@@ -118,6 +124,12 @@ public class SaitamaAudioListener extends ServerCommand implements IAudioListene
     @Override
     protected void runCommand(MessageCreateEvent event, Server server, ServerTextChannel channel, User user, String[] args) {
 
+
+
+
+
+
+
     }
 
 
@@ -127,7 +139,7 @@ public class SaitamaAudioListener extends ServerCommand implements IAudioListene
      * @param channel the channel where the command was sent.
      * @param m the server music manager.
      */
-    private void play(String query, ServerTextChannel channel, ServerMusicManager m,MessageCreateEvent messageCreateEvent){
+    private void play(String query, ServerTextChannel channel, ServerMusicManager m, MessageCreateEvent messageCreateEvent){
         playerManager.loadItemOrdered(m, isUrl(query) ? query : "ytsearch: " + query, new FunctionalResultHandler(audioTrack -> {
             // This is for track loaded.
             m.scheduler.queue(audioTrack);

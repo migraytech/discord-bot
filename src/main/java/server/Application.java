@@ -1,5 +1,6 @@
-import org.javacord.api.entity.message.MessageFlag;
-import org.javacord.api.interaction.SlashCommandInteraction;
+package server;
+
+import bots.SaitamaBot;
 import org.javacord.api.util.logging.FallbackLoggerConfiguration;
 
 

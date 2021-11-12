@@ -1,14 +1,12 @@
-package commands;
+package bots.listeners.commands;
 
 import service.MessageBuilderService;
-import service.ServerCommand;
+import models.ServerCommand;
 import org.javacord.api.entity.channel.ServerTextChannel;
 import org.javacord.api.entity.server.Server;
 import org.javacord.api.entity.user.User;
 import org.javacord.api.event.message.MessageCreateEvent;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.io.File;
 
 public class BanCommand extends ServerCommand {
