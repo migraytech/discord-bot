@@ -4,14 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3f80e193-3ea2-4aa3-a5df-8a16a2242838" name="Default Changelist" comment="Create new interfaces for the listeners classes">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/reference.conf" afterDir="false" />
+    <list default="true" id="3f80e193-3ea2-4aa3-a5df-8a16a2242838" name="Default Changelist" comment="some changes in the logic">
+      <change afterPath="$PROJECT_DIR$/src/main/java/bots/ModeratorBot.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/models/ModeratorBase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SaitamaAudioListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SaitamaAudioListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/SaitamaBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SaitamaBot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SaitamaAudioListener$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SaitamaAudioListener$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SaitamaAudioListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SaitamaAudioListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/SaitamaBot.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/SaitamaBot.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/AudioManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bots/helpers/AudioManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/LavaPlayerAudioSource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bots/helpers/LavaPlayerAudioSource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/PlayerManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bots/PlayerManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SaitamaAudioListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bots/listeners/SaitamaAudioListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SaitamaBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bots/SaitamaBot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ServerMusicManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bots/helpers/ServerMusicManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/TrackScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bots/helpers/TrackScheduler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/commands/BanCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bots/listeners/commands/BanCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/commands/CleanCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bots/listeners/commands/CleanCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/commands/KickCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bots/listeners/commands/KickCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/commands/MuteCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bots/listeners/commands/MuteCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/commands/OnePunchCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bots/listeners/commands/OnePunchCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/commands/WatchAnimeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bots/listeners/commands/WatchAnimeCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interfaces/IAudioListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interfaces/IAudioListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interfaces/ICommandListener.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/interfaces/IModerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/interfaces/IModerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Moderator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/ServerCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/ServerCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +68,7 @@
       </UrlAndAccount>
     </option>
   </component>
+  <component name="PhpDebugGeneral" listening_started="true" />
   <component name="ProjectId" id="1zqtpvJBwbCVRXcRfFyshDzSO5O" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -67,6 +83,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/images" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
   </component>
@@ -74,6 +91,13 @@
     <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Mignon\Documents\GitHub\discord-bot\src\main\resources\images" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Mignon\Documents\GitHub\discord-bot\src\main\java" />
+      <recent name="C:\Users\Mignon\Documents\GitHub\discord-bot\src\main\resources\images" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
@@ -81,9 +105,9 @@
   <component name="RunManager">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <envs>
-        <env name="DISCORD_TOKEN" value="OTAxMDEwMjAzMDYxOTQwMjM1.YXJpJA.zU-w_tJwzzzd1o0_Cvi7u0Y_OnQ" />
+        <env name="DISCORD_TOKEN" value="OTAxMDEwMjAzMDYxOTQwMjM1.YXJpJA.JmrMGAQHve2Hob6_FaLLhJ4oqz4" />
       </envs>
-      <option name="MAIN_CLASS_NAME" value="Application" />
+      <option name="MAIN_CLASS_NAME" value="server.Application" />
       <module name="discord-bot" />
       <extension name="net.ashald.envfile">
         <option name="IS_ENABLED" value="true" />
@@ -95,6 +119,19 @@
           <ENTRY IS_ENABLED="true" PARSER="runconfig" />
         </ENTRIES>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -124,6 +161,18 @@
       <workItem from="1635248213789" duration="2105000" />
       <workItem from="1635251718227" duration="7284000" />
       <workItem from="1635259069191" duration="1465000" />
+      <workItem from="1635409080550" duration="720000" />
+      <workItem from="1635881283788" duration="381000" />
+      <workItem from="1635881683766" duration="4695000" />
+      <workItem from="1635928281530" duration="595000" />
+      <workItem from="1635938828958" duration="3000" />
+      <workItem from="1635969481968" duration="11022000" />
+      <workItem from="1636104993544" duration="1782000" />
+      <workItem from="1636119420987" duration="594000" />
+      <workItem from="1636272911949" duration="3283000" />
+      <workItem from="1636374315383" duration="576000" />
+      <workItem from="1636374947021" duration="2680000" />
+      <workItem from="1636708459929" duration="3540000" />
     </task>
     <task id="LOCAL-00001" summary="CAdded">
       <created>1634896856274</created>
@@ -139,7 +188,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634916345865</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="some changes in the logic">
+      <created>1636663736117</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1636663736117</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -150,7 +206,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="feature/commands" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -160,6 +228,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="CAdded" />
     <MESSAGE value="Create new interfaces for the listeners classes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Create new interfaces for the listeners classes" />
+    <MESSAGE value="some changes in the logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="some changes in the logic" />
   </component>
 </project>

@@ -1,3 +1,6 @@
+package server;
+
+import bots.SaitamaBot;
 import org.javacord.api.util.logging.FallbackLoggerConfiguration;
 
 

@@ -1,9 +1,14 @@
-import Service.MessageBuilderService;
+package bots.listeners;
+
+import bots.PlayerManager;
+import bots.helpers.AudioManager;
+import bots.helpers.LavaPlayerAudioSource;
+import bots.helpers.ServerMusicManager;
+import service.MessageBuilderService;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.player.FunctionalResultHandler;
-import commands.ServerCommand;
+import models.ServerCommand;
 import interfaces.IAudioListener;
-import listener.SaitamaCommandListener;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.javacord.api.audio.AudioSource;
@@ -27,7 +32,7 @@ public class SaitamaAudioListener extends ServerCommand implements IAudioListene
 
     private final MessageBuilderService messageBuilderService = new MessageBuilderService();
 
-    private static final Logger logger = LogManager.getLogger(SaitamaCommandListener.class);
+    private static final Logger logger = LogManager.getLogger(SaitamaAudioListener.class);
 
 
     private final static Pattern pattern = Pattern.compile("!play (https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]");
@@ -69,14 +74,14 @@ public class SaitamaAudioListener extends ServerCommand implements IAudioListene
                             System.out.println("START SETTING UP THE SOURCE AND SERVER MANAGER");
                             ServerMusicManager m = AudioManager.get(messageCreateEvent.getServer().get().getId());
                             AudioSource source = new LavaPlayerAudioSource(messageCreateEvent.getApi(), m.player);
-                            ServerVoiceChannel serverVoiceChannel = messageCreateEvent.getApi().getServerVoiceChannelById(902531652578856974L).get();
+                            ServerVoiceChannel serverVoiceChannel = messageCreateEvent.getApi().getServerVoiceChannelById(835207222753493042L).get();
 
                             if (!serverVoiceChannel.isConnected(messageCreateEvent.getApi().getYourself()) && !messageCreateEvent.getServer().get().getAudioConnection().isPresent()) {
 
                                 System.out.println("JOIN THE BOT IN THE VOICE CHANNEL");
                                 serverVoiceChannel.connect().thenAccept(audioConnection -> {
                                     System.out.println("START");
-                                    // Create an audio source and add to audio connection queue, this is where we use the ServerMusicManager as well.
+                                    // Create an audio source and add to audio connection queue, this is where we use the bots.helpers.ServerMusicManager as well.
                                     audioConnection.setAudioSource(source);
                                     audioConnection.setSelfDeafened(true); // This is optional, but I prefer to have my bot deafen itself.
                                     // Plays the music.
@@ -88,7 +93,7 @@ public class SaitamaAudioListener extends ServerCommand implements IAudioListene
                                 messageCreateEvent.getServer().flatMap(Server::getAudioConnection).ifPresent(audioConnection -> {
                                     // Checks if the user is in the same channel as the bot.
                                     if (audioConnection.getChannel().getId() == serverVoiceChannel.getId()) {
-                                        // Create an audio source and add to audio connection queue, this is where we use the ServerMusicManager as well.
+                                        // Create an audio source and add to audio connection queue, this is where we use the bots.helpers.ServerMusicManager as well.
                                         audioConnection.setAudioSource(source);
                                         audioConnection.setSelfDeafened(true); // This is optional, but I prefer to have my bot deafen itself.
                                         // Plays the music.
@@ -110,15 +115,20 @@ public class SaitamaAudioListener extends ServerCommand implements IAudioListene
                         e.printStackTrace();
                     }
                 }
-                else {
-                    messageCreateEvent.getChannel().sendMessage("Are you trying to use the " + word + " command? Please use the syntax " + "!play" + "[yt-url]." + "Thanks!");
-                }
+            } else {
+                messageCreateEvent.getChannel().sendMessage("Are you trying to use the " + word + " command? Please use the syntax " + "!play" + "[yt-url]." + "Thanks!");
             }
         }
     }
 
     @Override
     protected void runCommand(MessageCreateEvent event, Server server, ServerTextChannel channel, User user, String[] args) {
+
+
+
+
+
+
 
     }
 
@@ -129,12 +139,12 @@ public class SaitamaAudioListener extends ServerCommand implements IAudioListene
      * @param channel the channel where the command was sent.
      * @param m the server music manager.
      */
-    private void play(String query, ServerTextChannel channel, ServerMusicManager m,MessageCreateEvent messageCreateEvent){
+    private void play(String query, ServerTextChannel channel, ServerMusicManager m, MessageCreateEvent messageCreateEvent){
         playerManager.loadItemOrdered(m, isUrl(query) ? query : "ytsearch: " + query, new FunctionalResultHandler(audioTrack -> {
             // This is for track loaded.
             m.scheduler.queue(audioTrack);
             channel.sendMessage("Saitama-bot have added the track: " + audioTrack.getInfo().title);
-            messageBuilderService.sendMessage(messageCreateEvent.getMessageAuthor(),audioTrack.getInfo().title,messageCreateEvent.getMessageAuthor().getMessage().toString(),"'Duration time: "+ (audioTrack.getInfo().length) / 60L, "https://i0.kym-cdn.com/photos/images/original/001/049/085/9ff.png",messageCreateEvent.getChannel());
+            messageBuilderService.sendMessage(messageCreateEvent.getMessageAuthor(),audioTrack.getInfo().title,messageCreateEvent.getMessageAuthor().getMessage().toString(),"'Duration time: "+ (audioTrack.getInfo().length) / 60L, "https://i0.kym-cdn.com/photos/images/original/001/049/085/9ff.png",audioTrack.getInfo().uri,messageCreateEvent.getChannel());
 
         }, audioPlaylist -> {
             // If the playlist is a search result, then we only need to get the first one.
@@ -148,7 +158,7 @@ public class SaitamaAudioListener extends ServerCommand implements IAudioListene
                 // If it isn't then simply queue every track.
                 audioPlaylist.getTracks().forEach(audioTrack -> {
                     m.scheduler.queue(audioTrack);
-                    messageBuilderService.sendMessage(messageCreateEvent.getMessageAuthor(),audioTrack.getInfo().title,messageCreateEvent.getMessageAuthor().getMessage().toString(),"'Duration time: "+ (audioTrack.getInfo().length) / 60L, "https://i0.kym-cdn.com/photos/images/original/001/049/085/9ff.png",messageCreateEvent.getChannel());
+                    messageBuilderService.sendMessage(messageCreateEvent.getMessageAuthor(),audioTrack.getInfo().title,messageCreateEvent.getMessageAuthor().getMessage().toString(),"'Duration time: "+ (audioTrack.getInfo().length) / 60L, "https://i0.kym-cdn.com/photos/images/original/001/049/085/9ff.png", audioTrack.getInfo().uri,messageCreateEvent.getChannel());
                     channel.sendMessage("We have queued the track: " + audioTrack.getInfo().title);
                 });
             }

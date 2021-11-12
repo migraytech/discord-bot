@@ -11,7 +11,6 @@ import org.javacord.api.listener.message.MessageCreateListener;
 public interface IAudioListener extends MessageCreateListener {
 
 
-    //void runCommand(MessageCreateEvent event, Server server, ServerTextChannel channel, User user, String[] args);
 
     @Override
     void onMessageCreate(MessageCreateEvent messageCreateEvent);
