@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3f80e193-3ea2-4aa3-a5df-8a16a2242838" name="Default Changelist" comment="Created and added new value in the methodes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bots/ModeratorBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bots/ModeratorBot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/models/ModeratorBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/ModeratorBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Application.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,6 +63,7 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/images" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="reference.settings.project.maven.repository.indices" />
   </component>
@@ -101,19 +99,6 @@
           <ENTRY IS_ENABLED="true" PARSER="runconfig" />
         </ENTRIES>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -154,7 +139,9 @@
       <workItem from="1636272911949" duration="3283000" />
       <workItem from="1636374315383" duration="576000" />
       <workItem from="1636374947021" duration="2680000" />
-      <workItem from="1636708459929" duration="9525000" />
+      <workItem from="1636708459929" duration="9789000" />
+      <workItem from="1636802176238" duration="606000" />
+      <workItem from="1636894760108" duration="1253000" />
     </task>
     <task id="LOCAL-00001" summary="CAdded">
       <created>1634896856274</created>
