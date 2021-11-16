@@ -175,6 +175,7 @@ public class ModeratorBot extends ModeratorBase implements IBot{
     public void sendMessageToUser(MessageCreateEvent event,User user,int count) {
            //Warning message , get the violationCounter from list to so the issue
           //messageBuilderService.sendMessage(null,"","","","","",null);
+           System.out.println("Count: "+count+"from the"+"User "+user.getName());
            event.getChannel().sendMessage("Count: "+count+"from the"+"User "+user.getName()).join();
     }
 
