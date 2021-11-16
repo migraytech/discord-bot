@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Message Listener
  *
- * @param
+ *
  */
 
 public class SaitamaBot implements IBot, MessageCreateListener {
@@ -205,7 +205,7 @@ public class SaitamaBot implements IBot, MessageCreateListener {
 
     /**
      * Message Listener
-     *
+     *remove the message with the dislike symbol
      *
      */
     @Override

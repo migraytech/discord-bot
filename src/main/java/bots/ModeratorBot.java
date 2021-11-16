@@ -1,8 +1,7 @@
 package bots;
 
 
-import bots.listeners.SaitamaAudioListener;
-import bots.listeners.commands.*;
+
 import interfaces.IBot;
 import models.ModeratorBase;
 import org.apache.logging.log4j.LogManager;
@@ -15,9 +14,6 @@ import org.javacord.api.entity.user.User;
 import org.javacord.api.event.message.MessageCreateEvent;
 import service.MessageBuilderService;
 
-import java.awt.*;
-import java.io.File;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 public class ModeratorBot extends ModeratorBase implements IBot{
@@ -32,7 +28,7 @@ public class ModeratorBot extends ModeratorBase implements IBot{
     @Override
     public void setup() {
 
-        logger.trace("Create bots.ModeratorBot");
+        logger.trace("Create ModeratorBot");
         discordApi = new DiscordApiBuilder()
                 .setToken(token)
                 .addServerBecomesAvailableListener(event -> {
@@ -129,6 +125,7 @@ public class ModeratorBot extends ModeratorBase implements IBot{
                             System.out.println("the User: "+user + "violated the rules");
                             sendMessageToUser(event,user, limit);
                             event.getChannel().sendMessage("Your are being asshole!").join();
+                            //messageBuilderService.sendMessage(null,"","","","","",null);
                             event.getServer().get().kickUser(user);
                             event.getChannel().sendMessage(user.getName()+"has been kicked from the server");
                             break;
@@ -175,6 +172,7 @@ public class ModeratorBot extends ModeratorBase implements IBot{
     public void sendMessageToUser(MessageCreateEvent event,User user,int count) {
            //Warning message , get the violationCounter from list to so the issue
           //messageBuilderService.sendMessage(null,"","","","","",null);
+           System.out.println("Count: "+count+"from the"+"User "+user.getName());
            event.getChannel().sendMessage("Count: "+count+"from the"+"User "+user.getName()).join();
     }
 
