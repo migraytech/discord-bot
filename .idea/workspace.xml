@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3f80e193-3ea2-4aa3-a5df-8a16a2242838" name="Default Changelist" comment="Created and added new value in the methodes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bots/ModeratorBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bots/ModeratorBot.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +143,8 @@
       <workItem from="1636802176238" duration="606000" />
       <workItem from="1636894760108" duration="1253000" />
       <workItem from="1636965199015" duration="1170000" />
-      <workItem from="1637060542896" duration="3178000" />
+      <workItem from="1637060542896" duration="3773000" />
+      <workItem from="1637147858584" duration="3025000" />
     </task>
     <task id="LOCAL-00001" summary="CAdded">
       <created>1634896856274</created>
