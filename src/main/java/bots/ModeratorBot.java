@@ -18,6 +18,7 @@ import service.MessageBuilderService;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class ModeratorBot extends ModeratorBase implements IBot{
@@ -81,7 +82,7 @@ public class ModeratorBot extends ModeratorBase implements IBot{
         if( reactionAddEvent.getMessageContent().equalsIgnoreCase("!help") || reactionAddEvent.getMessageContent().equalsIgnoreCase("!info")) {
                 reactionAddEvent.getChannel().sendMessage("Test");
                 messageBuilderService.sendMessage(reactionAddEvent.getMessageAuthor(),"Hello","test","Information of the moderator","","",reactionAddEvent.getChannel());
-                File file = new File(ModeratorBot.class.getResource("images/saitama-one-punch-man.gif").getFile());
+                File file = new File(Objects.requireNonNull(ModeratorBot.class.getResource("images/saitama-one-punch-man.gif")).getFile());
                 reactionAddEvent.getChannel().sendMessage(file);
 
         }
