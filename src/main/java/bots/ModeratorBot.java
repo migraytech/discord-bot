@@ -8,7 +8,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
+import org.javacord.api.entity.channel.Channel;
 import org.javacord.api.entity.channel.ServerTextChannel;
+import org.javacord.api.entity.channel.TextChannel;
 import org.javacord.api.entity.server.Server;
 import org.javacord.api.entity.user.User;
 import org.javacord.api.event.message.MessageCreateEvent;
@@ -24,6 +26,8 @@ public class ModeratorBot extends ModeratorBase implements IBot{
     private static DiscordApi discordApi;
     protected final String token = System.getenv("DISCORD_TOKEN");
     private boolean  isBadWord ;
+    private TextChannel serverTextChannel;
+    private Channel channel;
 
     @Override
     public void setup() {
@@ -68,31 +72,31 @@ public class ModeratorBot extends ModeratorBase implements IBot{
 
     @Override
     public void onMessageReceived() {
-//        serverTextChannel = messageCreateEvent.getServerTextChannel().get();
-//        channel = messageCreateEvent.getChannel();
-//        if (messageCreateEvent.getMessageContent().equalsIgnoreCase("!ping") || messageCreateEvent.getMessageContent().equals("!info"))  {
-//            messageCreateEvent.getChannel().sendMessage("HI!" + messageCreateEvent.getMessage().getUserAuthor().get().getName()).join();
-//            channel.sendMessage("Hi Guys  "+"@"+ serverTextChannel.getServer().getName() +"  " +  "Dont forget to subscribe on my friends Youtube Channel Migray-Tech!!").join();
-//            channel.sendMessage("Free to ask what kinda anime or programming tutorials you wanna watch!").join();
-//            channel.sendMessage("To see all bots.listeners.commands, please type '!bots.listeners.commands' or '!help'").join();
-//            channel.sendMessage(String.valueOf(new MessageBuilder()
-//                    .append("Look at these ")
-//                    .append("awesome", MessageDecoration.BOLD, MessageDecoration.UNDERLINE)
-//                    .addAttachment(new File("C:/Users/Mignon/Pictures/pic1.jpg"))
-//                    .addAttachment(new File("C:/Users/Mignon/Pictures/pic2.png"))
-//                    .appendCode("java", "System.out.println(\"Sweet!\");")
-//                    .setEmbed(new EmbedBuilder()
-//                            .setTitle("WOW")
-//                            .setDescription("ONE PUNCH")
-//                            .setColor(Color.ORANGE))
-//                    .send(channel))).join();
-//        }
-//
-//        // stop the BOT
-//        if(messageCreateEvent.getMessageContent().equalsIgnoreCase("!disconnect")) {
-//            channel.sendMessage("See you later!");
-//            disconnect();
-//        }
+        serverTextChannel = messageCreateEvent.getServerTextChannel().get();
+        channel = messageCreateEvent.getChannel();
+        if (messageCreateEvent.getMessageContent().equalsIgnoreCase("!ping") || messageCreateEvent.getMessageContent().equals("!info"))  {
+            messageCreateEvent.getChannel().sendMessage("HI!" + messageCreateEvent.getMessage().getUserAuthor().get().getName()).join();
+            channel.sendMessage("Hi Guys  "+"@"+ serverTextChannel.getServer().getName() +"  " +  "Dont forget to subscribe on my friends Youtube Channel Migray-Tech!!").join();
+            channel.sendMessage("Free to ask what kinda anime or programming tutorials you wanna watch!").join();
+            channel.sendMessage("To see all bots.listeners.commands, please type '!bots.listeners.commands' or '!help'").join();
+            channel.sendMessage(String.valueOf(new MessageBuilder()
+                    .append("Look at these ")
+                    .append("awesome", MessageDecoration.BOLD, MessageDecoration.UNDERLINE)
+                    .addAttachment(new File("C:/Users/Mignon/Pictures/pic1.jpg"))
+                    .addAttachment(new File("C:/Users/Mignon/Pictures/pic2.png"))
+                    .appendCode("java", "System.out.println(\"Sweet!\");")
+                    .setEmbed(new EmbedBuilder()
+                            .setTitle("WOW")
+                            .setDescription("ONE PUNCH")
+                            .setColor(Color.ORANGE))
+                    .send(channel))).join();
+        }
+
+        // stop the BOT
+        if(messageCreateEvent.getMessageContent().equalsIgnoreCase("!disconnect")) {
+            channel.sendMessage("See you later!");
+            disconnect();
+        }
 
     }
 
