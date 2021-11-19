@@ -9,11 +9,15 @@ import org.apache.logging.log4j.Logger;
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
 import org.javacord.api.entity.channel.ServerTextChannel;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
 import org.javacord.api.entity.server.Server;
 import org.javacord.api.entity.user.User;
 import org.javacord.api.event.message.MessageCreateEvent;
 import service.MessageBuilderService;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 public class ModeratorBot extends ModeratorBase implements IBot{
@@ -62,7 +66,9 @@ public class ModeratorBot extends ModeratorBase implements IBot{
      */
     @Override
     public void disconnect() {
-        logger.info("Disconnect the bots.SaitamaBot... ");
+        logger.info("Disconnect the ModeratorBot. ");
+        System.out.println("Disconnect the ModeratorBot. ");
+
         discordApi.disconnect();
         System.exit(3);
     }
@@ -72,7 +78,14 @@ public class ModeratorBot extends ModeratorBase implements IBot{
     public void onMessageReceived() {
         discordApi.addMessageCreateListener(reactionAddEvent -> {
 
-        // stop the BOT
+        if( reactionAddEvent.getMessageContent().equalsIgnoreCase("!help") || reactionAddEvent.getMessageContent().equalsIgnoreCase("!info")) {
+                reactionAddEvent.getChannel().sendMessage("Test");
+                messageBuilderService.sendMessage(reactionAddEvent.getMessageAuthor(),"Hello","test","Information of the moderator","","",reactionAddEvent.getChannel());
+                File file = new File(ModeratorBot.class.getResource("images/saitama-one-punch-man.gif").getFile());
+                reactionAddEvent.getChannel().sendMessage(file);
+
+        }
+
         if(reactionAddEvent.getMessageContent().equalsIgnoreCase("!disconnect")) {
             disconnect();
         }
@@ -101,16 +114,17 @@ public class ModeratorBot extends ModeratorBase implements IBot{
 
                     isBadWord = true;
                     int limit = 3;
-                    if (violationCounter.containsKey(user))
+                    if (violationCounter.containsKey(user) && event.getServer().isPresent())
                         if (violationCounter.get(user).equals(limit)) {
                             logger.info("User violated the rules");
                             System.out.println("the User: " + user + "violated the rules");
                             sendMessageToUser(event, user, limit);
                             event.getChannel().sendMessage("Your are being asshole!").join();
-                            messageBuilderService.sendMessage(event.getMessageAuthor(), "Warning", "", "You have been violated the rules", "https://i.kym-cdn.com/entries/icons/facebook/000/017/618/pepefroggie.jpg", "", event.getChannel());
+                            messageBuilderService.sendMessage(event.getMessageAuthor(), "You have been kick from the server !!", "", "You have  violated the rules", "https://i.kym-cdn.com/entries/icons/facebook/000/017/618/pepefroggie.jpg", "", event.getChannel());
                             event.getServer().get().kickUser(user);
                             event.getChannel().sendMessage(user.getName() + "has been kicked from the server");
                             break;
+
                         } else {
                             logger.info("Test");
                             System.out.println("Insert a value for the User " + user);
@@ -123,8 +137,8 @@ public class ModeratorBot extends ModeratorBase implements IBot{
                         }
                     else
                     {
-                        logger.info("Insert User in the list ");
-                        System.out.println("Insert a new User");
+                        logger.info("Insert User in the violationCounter list ");
+                        System.out.println("Insert User in the violationCounter list");
                         violationCounter.put(user,1);
                         sendMessageToUser(event, user,violationCounter.get(user));
                         break;
@@ -148,7 +162,7 @@ public class ModeratorBot extends ModeratorBase implements IBot{
 
     @Override
     public void sendMessageToUser(MessageCreateEvent event,User user,int count) {
-           System.out.println("Count: "+count+"from the"+"User "+user.getName());
+           System.out.println("Count: "+count+"from the "+" User "+user.getName());
            event.getChannel().sendMessage("Count: "+count+"from the"+"User "+user.getName()).join();
     }
 

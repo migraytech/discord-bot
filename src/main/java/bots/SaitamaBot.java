@@ -160,7 +160,7 @@ public class SaitamaBot implements IBot, MessageCreateListener {
 
             reactionAddEvent.getChannel().typeContinuouslyAfter(5L,TimeUnit.valueOf("MILLISECONDS"));
 
-        });
+        }).;
 
 
     }
