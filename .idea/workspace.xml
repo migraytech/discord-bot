@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3f80e193-3ea2-4aa3-a5df-8a16a2242838" name="Default Changelist" comment="Created and added new value in the methodes" />
+    <list default="true" id="3f80e193-3ea2-4aa3-a5df-8a16a2242838" name="Default Changelist" comment="Created and added new value in the methodes">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bots/ModeratorBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bots/ModeratorBot.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -83,7 +86,7 @@
   <component name="RunManager">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <envs>
-        <env name="DISCORD_TOKEN" value="OTAxMDEwMjAzMDYxOTQwMjM1.YXJpJA.YnnlkU7vMLxWFhCyAehBoI46b48" />
+        <env name="DISCORD_TOKEN" value="OTAxMDEwMjAzMDYxOTQwMjM1.YXJpJA.uzT_mSE-_Anx5ryoRq5xB6v4czo" />
       </envs>
       <option name="MAIN_CLASS_NAME" value="server.Application" />
       <module name="discord-bot" />
@@ -97,6 +100,17 @@
           <ENTRY IS_ENABLED="true" PARSER="runconfig" />
         </ENTRIES>
       </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -144,6 +158,8 @@
       <workItem from="1637060542896" duration="3773000" />
       <workItem from="1637147858584" duration="3025000" />
       <workItem from="1637228655165" duration="1364000" />
+      <workItem from="1637319328753" duration="330000" />
+      <workItem from="1637359096987" duration="643000" />
     </task>
     <task id="LOCAL-00001" summary="CAdded">
       <created>1634896856274</created>
@@ -215,12 +231,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/bots/ModeratorBot.java</url>
-          <line>121</line>
+          <line>101</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/bots/ModeratorBot.java</url>
-          <line>117</line>
+          <line>97</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
