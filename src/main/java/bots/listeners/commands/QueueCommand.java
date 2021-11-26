@@ -60,5 +60,6 @@ public class QueueCommand extends ServerCommand {
 
         }
 
+        return null;
     }
 }
