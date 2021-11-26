@@ -6,6 +6,7 @@ import bots.helpers.PlayerManager;
 import bots.helpers.ServerMusicManager;
 import bots.listeners.SaitamaAudioListener;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
+import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import models.ServerCommand;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,6 +16,9 @@ import org.javacord.api.entity.server.Server;
 import org.javacord.api.entity.user.User;
 import org.javacord.api.event.message.MessageCreateEvent;
 import service.MessageBuilderService;
+
+import java.util.List;
+import java.util.concurrent.BlockingQueue;
 
 public class QueueCommand extends ServerCommand {
 
@@ -37,15 +41,24 @@ public class QueueCommand extends ServerCommand {
         ServerMusicManager m = AudioManager.get(event.getServer().get().getId());
         AudioSource source = new LavaPlayerAudioSource(event.getApi(), m.player);
 
-        //1. Set the AudioSource
-
         //2. Set the TrackScheduler
+         BlockingQueue<AudioTrack>  trackList = m.scheduler.getTheQueueOfTheTracks();
+
 
         //3. Get the list in order with
 
-        
+
+
         //4. Set it pretty
 
+
+    }
+
+    private List<String> setTrackNames (BlockingQueue<AudioTrack> tracks){
+
+        for (AudioTrack track:tracks) {
+
+        }
 
     }
 }
