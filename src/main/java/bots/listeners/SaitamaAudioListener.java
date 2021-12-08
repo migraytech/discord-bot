@@ -4,6 +4,7 @@ import bots.helpers.PlayerManager;
 import bots.helpers.AudioManager;
 import bots.helpers.LavaPlayerAudioSource;
 import bots.helpers.ServerMusicManager;
+import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import service.MessageBuilderService;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.player.FunctionalResultHandler;
@@ -40,10 +41,9 @@ public class SaitamaAudioListener extends ServerCommand implements IAudioListene
 
     private final  AudioPlayerManager playerManager = PlayerManager.getManager();
 
-//    private final AudioPlayer player =  playerManager.createPlayer();
 
     public SaitamaAudioListener(){
-        super("!play");
+        super("play");
     }
 
     /**
@@ -81,7 +81,7 @@ public class SaitamaAudioListener extends ServerCommand implements IAudioListene
                                 System.out.println("JOIN THE BOT IN THE VOICE CHANNEL");
                                 serverVoiceChannel.connect().thenAccept(audioConnection -> {
                                     System.out.println("START");
-                                    // Create an audio source and add to audio connection queue, this is where we use the bots.helpers.ServerMusicManager as well.
+                                    // Create an audio source and add to audio connection queue, this is where we use the ServerMusicManager as well.
                                     audioConnection.setAudioSource(source);
                                     audioConnection.setSelfDeafened(true); // This is optional, but I prefer to have my bot deafen itself.
                                     // Plays the music.
@@ -93,7 +93,7 @@ public class SaitamaAudioListener extends ServerCommand implements IAudioListene
                                 messageCreateEvent.getServer().flatMap(Server::getAudioConnection).ifPresent(audioConnection -> {
                                     // Checks if the user is in the same channel as the bot.
                                     if (audioConnection.getChannel().getId() == serverVoiceChannel.getId()) {
-                                        // Create an audio source and add to audio connection queue, this is where we use the bots.helpers.ServerMusicManager as well.
+                                        // Create an audio source and add to audio connection queue, this is where we use the ServerMusicManager as well.
                                         audioConnection.setAudioSource(source);
                                         audioConnection.setSelfDeafened(true); // This is optional, but I prefer to have my bot deafen itself.
                                         // Plays the music.

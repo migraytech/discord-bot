@@ -21,11 +21,6 @@ import java.awt.*;
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
-/**
- * Message Listener
- *
- *
- */
 
 public class SaitamaBot implements IBot, MessageCreateListener {
 
@@ -61,14 +56,8 @@ public class SaitamaBot implements IBot, MessageCreateListener {
                  .addListener(new MuteCommand())
                  .addListener(new WatchAnimeCommand())
                  .addListener(new OnePunchCommand())
+                 .addListener(new QueueCommand())
                  .setWaitForServersOnStartup(false)
-//                 .setTotalShards(10)
-//                 .loginAllShards()
-//                 .forEach(shardFuture -> shardFuture
-//                         .thenAcceptAsync(bots.SaitamaBot::onShardLogin)
-//                         .exceptionally(ExceptionLogger.get())
-//                 )
-
                 .login()
                 .join();
 
@@ -128,7 +117,7 @@ public class SaitamaBot implements IBot, MessageCreateListener {
             if(reactionAddEvent.getMessageContent().equals("Hi Saitama-bot"))
                 reactionAddEvent.getChannel().sendMessage("Hi! :smiley:  "+reactionAddEvent.getMessage().getUserAuthor().get().getName());
 
-            if(reactionAddEvent.getMessageContent().equals("!bots.listeners.commands") || reactionAddEvent.getMessageContent().equals("!help")) {
+            if(reactionAddEvent.getMessageContent().equals("!commands") || reactionAddEvent.getMessageContent().equals("!help")) {
 
                 reactionAddEvent.getChannel().sendMessage("HI! " + reactionAddEvent.getMessage().getUserAuthor().get().getName()).join();
                 reactionAddEvent.getChannel().sendMessage("Here are some bots.listeners.commands that I understand:").join();
@@ -205,7 +194,7 @@ public class SaitamaBot implements IBot, MessageCreateListener {
 
     /**
      * Message Listener
-     *remove the message with the dislike symbol
+     * remove the message with the dislike symbol
      *
      */
     @Override
