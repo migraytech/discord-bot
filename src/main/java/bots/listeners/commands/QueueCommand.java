@@ -42,6 +42,7 @@ public class QueueCommand extends ServerCommand {
         if(event.getServer().isPresent())
         {
             try {
+
                 logger.info("Get the list of of the requested tracks.");
                 System.out.println("Get the list of of the requested tracks.");
 

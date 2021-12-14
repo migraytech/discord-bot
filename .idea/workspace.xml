@@ -6,11 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3f80e193-3ea2-4aa3-a5df-8a16a2242838" name="Default Changelist" comment="Created and added new value in the methodes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bots/SaitamaBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bots/SaitamaBot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bots/helpers/TrackScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bots/helpers/TrackScheduler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bots/listeners/commands/KickCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bots/listeners/commands/KickCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/bots/listeners/commands/QueueCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bots/listeners/commands/QueueCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/Application.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +86,7 @@
   <component name="RunManager">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <envs>
-        <env name="DISCORD_TOKEN" value="OTAxMDEwMjAzMDYxOTQwMjM1.YXJpJA.LbvuVjX1yTgi20BdRTorR6j-fXY" />
+        <env name="DISCORD_TOKEN" value="OTAxMDEwMjAzMDYxOTQwMjM1.YXJpJA.vcY-QvDg33zTn96JY6I0NeKPNos" />
       </envs>
       <option name="MAIN_CLASS_NAME" value="server.Application" />
       <module name="discord-bot" />
@@ -160,7 +156,9 @@
       <workItem from="1637836134511" duration="594000" />
       <workItem from="1637916975811" duration="1207000" />
       <workItem from="1637939159184" duration="6000" />
-      <workItem from="1639482046616" duration="6010000" />
+      <workItem from="1639482046616" duration="7020000" />
+      <workItem from="1639489256837" duration="34000" />
+      <workItem from="1639489306214" duration="1189000" />
     </task>
     <task id="LOCAL-00001" summary="CAdded">
       <created>1634896856274</created>
