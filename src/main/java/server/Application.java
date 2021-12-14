@@ -14,16 +14,16 @@ public class Application {
 
         FallbackLoggerConfiguration.setTrace(false);
 
-//        saitamaBot = new SaitamaBot();
-//        saitamaBot.setup();
-//        saitamaBot.start();
-//        saitamaBot.onMessageReceived();
-//        saitamaBot.removeMessage();
+        saitamaBot = new SaitamaBot();
+        saitamaBot.setup();
+        saitamaBot.start();
+        saitamaBot.onMessageReceived();
+        saitamaBot.removeMessage();
 
-        moderatorBot = new ModeratorBot();
-        moderatorBot.setup();
-        moderatorBot.start();
-        moderatorBot.onMessageReceived();
-        moderatorBot.removeMessage();
+//        moderatorBot = new ModeratorBot();
+//        moderatorBot.setup();
+//        moderatorBot.start();
+//        moderatorBot.onMessageReceived();
+//        moderatorBot.removeMessage();
     }
 }

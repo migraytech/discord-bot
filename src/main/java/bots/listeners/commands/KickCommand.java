@@ -26,21 +26,18 @@ public class KickCommand extends ServerCommand {
                     if(event.getMessageAuthor().isRegularUser()) {
                         event.getChannel().sendMessage("You have no permissions to do that");
                     }
+
                     //split the Message
                     String username = args[1];
                     if(event.getServer().get().getMembers().stream().anyMatch(user1 -> user1.getName().equals(username))) {
                         User kickedUser = event.getServer().get().getMembers().stream().filter(user1 -> user1.getName().equals(username)).findFirst().get();
-                        messageBuilderService.sendMessage(event.getMessageAuthor(),"Kicker "+username," "," "," ", " ",event.getChannel());
+                        messageBuilderService.sendMessage(event.getMessageAuthor(),"Kicker "+username," ","requested get kicked "," ", " ",event.getChannel());
                         event.getServer().get().kickUser(kickedUser);
-                        event.getChannel().sendMessage("Kick:  " + username);
+                        event.getChannel().sendMessage("Kick: " + username);
                         return;
                     }
-
-                    event.getChannel().sendMessage("This username:"+ username+" is not in server ");
-
+                    event.getChannel().sendMessage("This username:"+ username+" is not in the server ");
                 }
-
-
             }
             catch (Exception e){
                 e.getStackTrace();
