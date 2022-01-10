@@ -3,21 +3,22 @@ package bots;
 
 
 import interfaces.IBot;
+
 import models.ModeratorBase;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
 import org.javacord.api.entity.channel.ServerTextChannel;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
+
 import org.javacord.api.entity.server.Server;
 import org.javacord.api.entity.user.User;
 import org.javacord.api.event.message.MessageCreateEvent;
 import service.MessageBuilderService;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -60,11 +61,7 @@ public class ModeratorBot extends ModeratorBase implements IBot{
         System.out.println("Start the ModeratorBot");
     }
 
-    /**
-     * Message Listener
-     *
-     * @param
-     */
+
     @Override
     public void disconnect() {
         logger.info("Disconnect the ModeratorBot. ");
@@ -120,6 +117,8 @@ public class ModeratorBot extends ModeratorBase implements IBot{
                             logger.info("User violated the rules");
                             System.out.println("the User: " + user + "violated the rules");
                             sendMessageToUser(event, user, limit);
+
+
                             event.getChannel().sendMessage("Your are being asshole!").join();
                             messageBuilderService.sendMessage(event.getMessageAuthor(), "You have been kick from the server !!", "", "You have  violated the rules", "https://i.kym-cdn.com/entries/icons/facebook/000/017/618/pepefroggie.jpg", "", event.getChannel());
                             event.getServer().get().kickUser(user);
@@ -127,11 +126,13 @@ public class ModeratorBot extends ModeratorBase implements IBot{
                             break;
 
                         } else {
+
                             logger.info("Test");
                             System.out.println("Insert a value for the User " + user);
                             int count = violationCounter.get(user);
                             violationCounter.replace(user, count, count + 1);
                             count = violationCounter.get(user);
+
                             System.out.println("New value has been updated" + "the count is on " + count);
                             sendMessageToUser(event, user, count);
                             break;
@@ -152,7 +153,7 @@ public class ModeratorBot extends ModeratorBase implements IBot{
 
             if(isBadWord){
                 event.getMessage().delete().join();
-                event.getChannel().sendMessage("Message had been deleted by Moderator Bot").join();
+                event.getChannel().sendMessage("Message had been deleted by Moderator").join();
             }
 
         }
