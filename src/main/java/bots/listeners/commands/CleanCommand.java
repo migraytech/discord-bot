@@ -21,7 +21,7 @@ public class CleanCommand extends ServerCommand {
             if(event.getServer().isPresent()){
 
                 if(!event.getMessageAuthor().isRegularUser()) {
-                    event.getChannel().sendMessage("You have no permissions to do that");
+                    event.getChannel().sendMessage("You have no permissions to do that!");
                 }
                 int counter = (int) channel.getMessagesAsStream().count();
                 System.out.println("Messages counter: "+counter);

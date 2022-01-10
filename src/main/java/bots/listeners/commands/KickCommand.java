@@ -24,7 +24,7 @@ public class KickCommand extends ServerCommand {
                 if(event.getServer().isPresent()){
 
                     if(event.getMessageAuthor().isRegularUser()) {
-                        event.getChannel().sendMessage("You have no permissions to do that");
+                        event.getChannel().sendMessage("You have no permissions to do that!");
                     }
 
                     //split the Message

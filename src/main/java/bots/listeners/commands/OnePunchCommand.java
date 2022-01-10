@@ -24,7 +24,7 @@ public class OnePunchCommand extends ServerCommand {
                 if(!event.getMessageAuthor().isRegularUser()) {
                     event.getChannel().sendMessage("You have no permissions to do that");
                 }
-                System.out.println("Start to one punch the user");
+                System.out.println("Start to one punch the user!");
                 String username = args[1];
                 if(event.getServer().get().getMembers().stream().anyMatch(user1 -> user1.getName().equals(username))) {
                     messageBuilderService.sendMessage(event.getMessageAuthor(),"ONE PUNCH "+username,"FOUND YOU!","Its over for you!!"," ", " ",event.getChannel());
