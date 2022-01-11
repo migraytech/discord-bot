@@ -68,14 +68,7 @@ public class SaitamaBot implements IBot, MessageCreateListener {
          System.out.println("Setup the bot...");
          logger.trace("Setup the bot... ");
     }
-
-    private static void onShardLogin(DiscordApi api) {
-        System.out.println("Shard " + api.getCurrentShard() + " logged in!");
-        // You can treat the shard like a normal bot account, e.g. registering listeners
-        api.addMessageCreateListener(event -> {
-            // ...
-        });
-    }
+    
 
 
     /**
