@@ -68,14 +68,7 @@ public class SaitamaBot implements IBot, MessageCreateListener {
          System.out.println("Setup the bot...");
          logger.trace("Setup the bot... ");
     }
-
-    private static void onShardLogin(DiscordApi api) {
-        System.out.println("Shard " + api.getCurrentShard() + " logged in!");
-        // You can treat the shard like a normal bot account, e.g. registering listeners
-        api.addMessageCreateListener(event -> {
-            // ...
-        });
-    }
+    
 
 
     /**
@@ -129,7 +122,7 @@ public class SaitamaBot implements IBot, MessageCreateListener {
                         .append("!disconnect ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Stop the bots.SaitamaBot").send(channel))).join();
 
                 reactionAddEvent.getChannel().sendMessage(String.valueOf(new MessageBuilder()
-                                .append("!one-punch  <@user>",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("One punch a User form the server for Softban a member").send(channel))).join();
+                                .append("!one-punch  <@user>",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("One punch a User form the server for Soft ban a member").send(channel))).join();
 
                 reactionAddEvent.getChannel().sendMessage(String.valueOf(new MessageBuilder()
                                 .append("!ban <@user>",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Ban a member for a limited amount of time, by entering the limit in the command.").send(channel))).join();
@@ -157,7 +150,7 @@ public class SaitamaBot implements IBot, MessageCreateListener {
     /**
      * Message Listener
      *
-     * @param messageCreateEvent
+     *
      */
     @Override
     public void onMessageCreate(MessageCreateEvent messageCreateEvent) {
