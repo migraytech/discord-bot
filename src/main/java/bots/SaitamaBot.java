@@ -68,7 +68,7 @@ public class SaitamaBot implements IBot, MessageCreateListener {
          System.out.println("Setup the bot...");
          logger.trace("Setup the bot... ");
     }
-    
+
 
 
     /**
@@ -102,6 +102,8 @@ public class SaitamaBot implements IBot, MessageCreateListener {
      *
      * @param
      */
+
+    //TODO fix the COmporater Future check the note pade for more info 
     @Override
     public void onMessageReceived() {
         discordApi.addMessageCreateListener(reactionAddEvent -> {
