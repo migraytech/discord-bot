@@ -103,7 +103,7 @@ public class SaitamaBot implements IBot, MessageCreateListener {
      * @param
      */
 
-    //TODO fix the COmporater Future check the note pade for more info 
+    //TODO fix the COmporater Future check the note pade for more info
     @Override
     public void onMessageReceived() {
         discordApi.addMessageCreateListener(reactionAddEvent -> {
