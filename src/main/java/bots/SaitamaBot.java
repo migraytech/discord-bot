@@ -86,7 +86,7 @@ public class SaitamaBot implements IBot, MessageCreateListener {
     /**
      * Message Listener
      *
-     * @param  dscioonecct the bot 
+     * @param  disconnect the bot
      */
     @Override
     public void disconnect() {
