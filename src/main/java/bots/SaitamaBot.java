@@ -86,7 +86,7 @@ public class SaitamaBot implements IBot, MessageCreateListener {
     /**
      * Message Listener
      *
-     * @param  disconn the bot
+     * @param   bot
      */
     @Override
     public void disconnect() {
@@ -187,7 +187,7 @@ public class SaitamaBot implements IBot, MessageCreateListener {
 
     /**
      * Message Listener
-     * remove the message with the dislike symbol
+     *  Remove the message with the dislike symbol
      *
      */
     @Override
