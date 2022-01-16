@@ -19,9 +19,8 @@ public class BanCommand extends ServerCommand {
 
     @Override
     protected void runCommand(MessageCreateEvent event, Server server, ServerTextChannel channel, User user, String[] args) {
-
-
         if(event.getServer().isPresent()){
+
             try {
 
                 if(!event.getMessageAuthor().isRegularUser()) {
@@ -37,23 +36,12 @@ public class BanCommand extends ServerCommand {
                     event.getChannel().sendMessage(new File("C:/Users/Mignon/Pictures/pic3.jpg"));
                     return;
                 }
+
                 event.getChannel().sendMessage("This username: "+ username+" is not in server ");
             }
             catch (Exception e){
                 e.getStackTrace();
             }
-
         }
-
-    }
-
-
-    private void banUserFromServer(User user,MessageCreateEvent event){
-
-
-        // ban user from server
-
-        // send message that user is ban
-
     }
 }
