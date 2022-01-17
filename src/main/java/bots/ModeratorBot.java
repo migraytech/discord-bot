@@ -162,7 +162,7 @@ public class ModeratorBot extends ModeratorBase implements IBot{
         }
     }
 
-    /// Create a methode to clean the methide line to shorter logic 
+    /// Create a methode to clean the  line to shorter logic
 
     @Override
     public void sendMessageToUser(MessageCreateEvent event,User user,int count) {
