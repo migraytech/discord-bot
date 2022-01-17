@@ -10,6 +10,7 @@ import org.javacord.api.event.message.MessageCreateEvent;
 public class KickCommand extends ServerCommand {
 
     private final MessageBuilderService messageBuilderService = new MessageBuilderService();
+    
     public KickCommand( ) {
         super("kick");
 
