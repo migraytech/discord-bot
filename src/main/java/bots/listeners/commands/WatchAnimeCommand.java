@@ -21,7 +21,6 @@ public class WatchAnimeCommand extends ServerCommand {
     private String link;
     @Override
     protected void runCommand(MessageCreateEvent event, Server server, ServerTextChannel channel, User user, String[] args) {
-
         if(event.getServer().isPresent()){
             try
             {
@@ -35,7 +34,6 @@ public class WatchAnimeCommand extends ServerCommand {
             catch (Exception e){
                 e.getStackTrace();
             }
-
         }
     }
 }

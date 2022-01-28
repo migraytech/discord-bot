@@ -83,7 +83,7 @@
   <component name="RunManager">
     <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <envs>
-        <env name="DISCORD_TOKEN" value="OTAxMDEwMjAzMDYxOTQwMjM1.YXJpJA.ADIUMGH03SuzwPngWz-Gm_5wmfQ" />
+        <env name="DISCORD_TOKEN" value="OTAxMDEwMjAzMDYxOTQwMjM1.YXJpJA.Iaqmlwl-tS3pZwCiOLAD64PBVCs" />
       </envs>
       <option name="MAIN_CLASS_NAME" value="server.Application" />
       <module name="discord-bot" />
@@ -177,7 +177,7 @@
       <workItem from="1643018682103" duration="433000" />
       <workItem from="1643188805493" duration="1781000" />
       <workItem from="1643284444762" duration="597000" />
-      <workItem from="1643362909854" duration="4522000" />
+      <workItem from="1643362909854" duration="4814000" />
     </task>
     <task id="LOCAL-00001" summary="CAdded">
       <created>1634896856274</created>
