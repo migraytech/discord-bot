@@ -73,7 +73,7 @@ public class SaitamaBot implements IBot, MessageCreateListener {
         System.out.println("Start the bots.SaitamaBot..");
     }
 
-    
+
     @Override
     public void disconnect() {
         logger.info("Disconnect the bots.SaitamaBot... ");

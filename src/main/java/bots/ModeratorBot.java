@@ -33,10 +33,8 @@ public class ModeratorBot extends ModeratorBase implements IBot{
 
     @Override
     public void setup() {
-
         logger.trace("Create ModeratorBot");
         System.out.println("Create ModeratorBot");
-
         discordApi = new DiscordApiBuilder()
                 .setToken(token)
                 .addServerBecomesAvailableListener(event -> {
@@ -46,12 +44,10 @@ public class ModeratorBot extends ModeratorBase implements IBot{
                 .setWaitForServersOnStartup(false)
                 .login()
                 .join();
-
         System.out.println("Connected to shard " + discordApi.getCurrentShard());
         discordApi.setMessageCacheSize(10, 60);
         System.out.println("Setup the bot...");
         logger.trace("Setup the bot... ");
-
     }
 
     @Override
@@ -66,7 +62,6 @@ public class ModeratorBot extends ModeratorBase implements IBot{
     public void disconnect() {
         logger.info("Disconnect the ModeratorBot. ");
         System.out.println("Disconnect the ModeratorBot. ");
-
         discordApi.disconnect();
         System.exit(3);
     }
@@ -75,20 +70,15 @@ public class ModeratorBot extends ModeratorBase implements IBot{
     @Override
     public void onMessageReceived() {
         discordApi.addMessageCreateListener(reactionAddEvent -> {
-
         if( reactionAddEvent.getMessageContent().equalsIgnoreCase("!help") || reactionAddEvent.getMessageContent().equalsIgnoreCase("!info")) {
                 reactionAddEvent.getChannel().sendMessage("Test");
                 messageBuilderService.sendMessage(reactionAddEvent.getMessageAuthor(),"Hello","test","Information of the moderator","","",reactionAddEvent.getChannel());
                 File file = new File(Objects.requireNonNull(ModeratorBot.class.getResource("images/saitama-one-punch-man.gif")).getFile());
                 reactionAddEvent.getChannel().sendMessage(file);
-
         }
-
         if(reactionAddEvent.getMessageContent().equalsIgnoreCase("!disconnect")) {
             disconnect();
-        }
-
-        });
+        } });
     }
 
     @Override
@@ -99,7 +89,6 @@ public class ModeratorBot extends ModeratorBase implements IBot{
                 event.deleteMessage();
             }
         }).removeAfter(30, TimeUnit.MINUTES);
-
     }
 
     @Override
@@ -109,7 +98,6 @@ public class ModeratorBot extends ModeratorBase implements IBot{
             for (String x: moderatorsWords) {
                 if(args[0].contains(x)){
                     System.out.println("CHECKED");
-
                     isBadWord = true;
                     int limit = 3;
                     if (violationCounter.containsKey(user) && event.getServer().isPresent())
@@ -117,8 +105,6 @@ public class ModeratorBot extends ModeratorBase implements IBot{
                             logger.info("User violated the rules");
                             System.out.println("the User: " + user + "violated the rules");
                             sendMessageToUser(event, user, limit);
-
-
                             event.getChannel().sendMessage("Your are being asshole!").join();
                             messageBuilderService.sendMessage(event.getMessageAuthor(), "You have been kick from the server !!", "", "You have  violated the rules", "https://i.kym-cdn.com/entries/icons/facebook/000/017/618/pepefroggie.jpg", "", event.getChannel());
                             event.getServer().get().kickUser(user);
@@ -126,31 +112,25 @@ public class ModeratorBot extends ModeratorBase implements IBot{
                             break;
 
                         } else {
-
                             logger.info("Test");
                             System.out.println("Insert a value for the User " + user);
                             int count = violationCounter.get(user);
                             violationCounter.replace(user, count, count + 1);
                             count = violationCounter.get(user);
-
                             System.out.println("New value has been updated" + "the count is on " + count);
                             sendMessageToUser(event, user, count);
                             break;
                         }
-                    else
-                    {
+                    else {
                         logger.info("Insert User in the violationCounter list ");
                         System.out.println("Insert User in the violationCounter list");
-                        violationCounter.put(user,1);
-                        sendMessageToUser(event, user,violationCounter.get(user));
+                        violationCounter.put(user, 1);
+                        sendMessageToUser(event, user, violationCounter.get(user));
                         break;
                     }
-
                 }
                 isBadWord = false;
             }
-
-
             if(isBadWord){
                 event.getMessage().delete().join();
                 event.getChannel().sendMessage("Message had been deleted by Moderator").join();
@@ -162,12 +142,10 @@ public class ModeratorBot extends ModeratorBase implements IBot{
         }
     }
 
-    /// Create a methode to clean the  line to shorter logic
-
     @Override
     public void sendMessageToUser(MessageCreateEvent event,User user,int count) {
-           System.out.println("Count: "+count+"from the "+" User "+user.getName());
-           event.getChannel().sendMessage("Count: "+count+"from the"+"User "+user.getName()).join();
+           System.out.println("Count: "+count+" from the "+" User "+user.getName());
+           event.getChannel().sendMessage("Count: "+count+" from the "+"User "+user.getName()).join();
     }
 
 }
