@@ -81,8 +81,6 @@ public class SaitamaBot implements IBot, MessageCreateListener {
         System.exit(3);
     }
 
-
-    //TODO fix the Comporater Future check the note pade for more info
     @Override
     public void onMessageReceived() {
         discordApi.addMessageCreateListener(reactionAddEvent -> {
