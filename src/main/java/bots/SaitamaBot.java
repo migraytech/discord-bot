@@ -60,9 +60,6 @@ public class SaitamaBot implements IBot, MessageCreateListener {
                 .login()
                 .join();
 
-
-         System.out.println("Connected to shard " + discordApi.getCurrentShard());
-
          discordApi.setMessageCacheSize(10, 60);
          System.out.println("Setup the bot...");
          logger.trace("Setup the bot... ");
@@ -76,11 +73,7 @@ public class SaitamaBot implements IBot, MessageCreateListener {
         System.out.println("Start the bots.SaitamaBot..");
     }
 
-    /**
-     * Message Listener
-     *
-     * @param
-     */
+    
     @Override
     public void disconnect() {
         logger.info("Disconnect the bots.SaitamaBot... ");
@@ -88,13 +81,6 @@ public class SaitamaBot implements IBot, MessageCreateListener {
         System.exit(3);
     }
 
-
-
-    /**
-     * Message Listener
-     *
-     * @param
-     */
 
     //TODO fix the Comporater Future check the note pade for more info
     @Override
@@ -171,12 +157,6 @@ public class SaitamaBot implements IBot, MessageCreateListener {
         }
     }
 
-
-    /**
-     * Message Listener
-     *  Remove the message with the dislike symbol
-     *
-     */
     @Override
     public void removeMessage() {
         discordApi.addReactionAddListener(event -> {
