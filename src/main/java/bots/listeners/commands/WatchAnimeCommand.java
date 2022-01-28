@@ -29,7 +29,6 @@ public class WatchAnimeCommand extends ServerCommand {
                 messageBuilderService.sendMessage(event.getMessageAuthor(),"Requested Anime","This anime is requested","Watch and check the link above. The anime that you requested: "+ anime_name.toUpperCase(),"https://i.pinimg.com/736x/19/21/f7/1921f7d346f27b7364a9b6b7a24072c2.jpg",link,channel);
                 System.out.println("The anime that you requested "+ anime_name);
                 System.out.println("Link of the anime: "+BASE_URL+"Anime/"+anime_name);
-
             }
             catch (Exception e){
                 e.getStackTrace();
