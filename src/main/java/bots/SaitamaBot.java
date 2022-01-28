@@ -40,7 +40,6 @@ public class SaitamaBot implements IBot, MessageCreateListener {
 
      @Override
     public void setup() {
-
          PlayerManager.init();
          logger.trace("Create bots.SaitamaBot:  "+id+"  "+version);
          discordApi = new DiscordApiBuilder()
@@ -70,12 +69,6 @@ public class SaitamaBot implements IBot, MessageCreateListener {
     }
 
 
-
-    /**
-     * Message Listener
-     *
-     * @param
-     */
     @Override
     public void start() {
         System.out.println("You can invite the bot by using the following url:" + discordApi.createBotInvite());
@@ -86,7 +79,7 @@ public class SaitamaBot implements IBot, MessageCreateListener {
     /**
      * Message Listener
      *
-     * @param   bot
+     * @param
      */
     @Override
     public void disconnect() {
@@ -120,40 +113,37 @@ public class SaitamaBot implements IBot, MessageCreateListener {
                 reactionAddEvent.getChannel().sendMessage(String.valueOf(new MessageBuilder()
                                 .append("!clean ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Remove all messages from the Text Channel").send(channel))).join();
 
+
                 reactionAddEvent.getChannel().sendMessage(String.valueOf(new MessageBuilder()
                         .append("!disconnect ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Stop the bots.SaitamaBot").send(channel))).join();
 
+
                 reactionAddEvent.getChannel().sendMessage(String.valueOf(new MessageBuilder()
-                                .append("!one-punch  <@user>",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("One punch a User form the server for Soft ban a member").send(channel))).join();
+
+                                .append("!one-punch <@user>",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("One punch a User form the server for Soft ban a member").send(channel))).join();
 
                 reactionAddEvent.getChannel().sendMessage(String.valueOf(new MessageBuilder()
                                 .append("!ban <@user>",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Ban a member for a limited amount of time, by entering the limit in the command.").send(channel))).join();
 
+
                 reactionAddEvent.getChannel().sendMessage(String.valueOf(new MessageBuilder()
                                 .append("!kick <@user> ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Kick a member in the channel").send(channel))).join();
+
 
                 reactionAddEvent.getChannel().sendMessage(String.valueOf(new MessageBuilder()
                                 .append("!mute <@user> ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Mute a member so they cannot type or speak for a limited time").send(channel))).join();
 
+
                 reactionAddEvent.getChannel().sendMessage(String.valueOf(new MessageBuilder()
                         .append("!play <@url> ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Add me to VoiceChannel in Chill Friday Voice Channel and start play music with the command").send(channel))).join();
+
 
                 reactionAddEvent.getChannel().sendMessage(String.valueOf(new MessageBuilder()
                                 .append("!watch-anime <@name> ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Watch anime video from kissanime.ru select the anime-name ").send(channel))).join();
             }
-
         });
-
-
     }
 
-
-
-    /**
-     * Message Listener
-     *
-     *
-     */
     @Override
     public void onMessageCreate(MessageCreateEvent messageCreateEvent) {
         serverTextChannel = messageCreateEvent.getServerTextChannel().get();
@@ -162,7 +152,7 @@ public class SaitamaBot implements IBot, MessageCreateListener {
             messageCreateEvent.getChannel().sendMessage("HI!" + messageCreateEvent.getMessage().getUserAuthor().get().getName()).join();
             channel.sendMessage("Hi Guys  "+"@"+ serverTextChannel.getServer().getName() +"  " +  "Dont forget to subscribe on my friends Youtube Channel Migray-Tech!!").join();
             channel.sendMessage("Free to ask what kinda anime or programming tutorials you wanna watch!").join();
-            channel.sendMessage("To see all bots.listeners.commands, please type '!bots.listeners.commands' or '!help'").join();
+            channel.sendMessage("To see all commands, please type '!commands' or '!help'").join();
             channel.sendMessage(String.valueOf(new MessageBuilder()
                     .append("Look at these ")
                     .append("awesome", MessageDecoration.BOLD, MessageDecoration.UNDERLINE)
@@ -175,13 +165,10 @@ public class SaitamaBot implements IBot, MessageCreateListener {
                             .setColor(Color.ORANGE))
                     .send(channel))).join();
         }
-
-        // stop the BOT
         if(messageCreateEvent.getMessageContent().equalsIgnoreCase("!disconnect")) {
             channel.sendMessage("See you later!");
             disconnect();
         }
-
     }
 
 
