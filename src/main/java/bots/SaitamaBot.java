@@ -123,7 +123,7 @@ public class SaitamaBot implements IBot, MessageCreateListener {
 
 
                 reactionAddEvent.getChannel().sendMessage(String.valueOf(new MessageBuilder()
-                                .append("!watch-anime <@name> ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Watch anime video from kissanime.ru select the anime-name ").send(channel))).join();
+                                .append("!watch-anime <@name> ",MessageDecoration.BOLD,MessageDecoration.CODE_SIMPLE).append("Watch anime video from kissanime.ru select the anime-name you want to watch ").send(channel))).join();
             }
         });
     }
